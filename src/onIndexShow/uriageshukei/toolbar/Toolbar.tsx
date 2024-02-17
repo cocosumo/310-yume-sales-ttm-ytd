@@ -1,13 +1,9 @@
-import {Card, CardBody, Text} from '@chakra-ui/react';
+import ToolbarContainer from './ToolbarContainer';
 
 export default function Toolbar() {
 	return (
-		<Card
-			width={'100%'}
-		>
-			<CardBody>
-				<Text>View a summary of all your customers over the last month.</Text>
-			</CardBody>
-		</Card>
+		<ToolbarContainer>
+			<h1>Toolbar</h1>
+		</ToolbarContainer>
 	);
 }

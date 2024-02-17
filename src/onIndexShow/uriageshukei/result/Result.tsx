@@ -1,7 +1,11 @@
+import {Box} from '@chakra-ui/react';
+
 export default function Result() {
 	return (
-		<div>
+		<Box
+			height={'2000px'}
+		>
 			<h1>Result</h1>
-		</div>
+		</Box>
 	);
 }

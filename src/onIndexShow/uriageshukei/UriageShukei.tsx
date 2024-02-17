@@ -10,6 +10,7 @@ export default function UriageShukei() {
 			<Container 
 				my={2}
       	maxW="100%"
+				position={'absolute'}
 				centerContent
 			>
 				<Toolbar />
