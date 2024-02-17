@@ -1,4 +1,10 @@
+import onIndexShow from "onIndexShow";
+
 (() => {
-  console.log('Hello World');
-  console.log(''); // Empty line
+
+  kintone.events.on([
+    'app.record.index.show',
+  ], onIndexShow);
+
+  
 })();
