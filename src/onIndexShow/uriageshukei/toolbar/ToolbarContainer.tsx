@@ -9,6 +9,7 @@ export default function ToolbarContainer({
 }) {
 	return (
 		<HStack
+			spacing={4}
 			rounded={'md'}
 			bg={'white'}
 			boxShadow={'md'}
