@@ -1,4 +1,4 @@
-import renderUriageShukei from './uriageshukei';
+import renderUriageShukei from './uriageshukei/renderUriageShukei';
 
 type EventParams = {
 	appId: number;
