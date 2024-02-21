@@ -1,3 +1,5 @@
-export type TyumeSale = YumeSales.SavedFields;
-export type YumeSaleKey = keyof TyumeSale;
-export type TyumeSales = TyumeSale[];
+export type TyumeSales = YumeSales.SavedFields;
+export type TYumeSaleKey = keyof TyumeSales;
+
+export type TStores = Stores.SavedFields;
+export type TStoreKey = keyof TStores;

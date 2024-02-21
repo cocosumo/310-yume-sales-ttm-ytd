@@ -1,14 +1,14 @@
 import {kintoneClient} from 'clients/kintoneClient';
 import {config} from 'config/config';
-import {type TyumeSales, type YumeSaleKey} from 'types';
+import {type TyumeSales, type TYumeSaleKey} from 'types';
 
 
 
 export const getYearRange = async () => {
 	const thisYear = new Date().getFullYear();
 	const years = [thisYear];
-	const salesDateKey: YumeSaleKey = 'salesDate';
-	const fields: YumeSaleKey[] = [salesDateKey];
+	const salesDateKey: TYumeSaleKey = 'salesDate';
+	const fields: TYumeSaleKey[] = [salesDateKey];
 	try {
 		const result = await kintoneClient
 			.record
@@ -18,7 +18,7 @@ export const getYearRange = async () => {
 				fields,
 			});
 
-		const [oldestRecord] = result.records as unknown as TyumeSales;
+		const [oldestRecord] = result.records as unknown as TyumeSales[];
 
 		if (oldestRecord) {
 			const oldestRecordYear = Number(oldestRecord[salesDateKey].value.slice(0, 4));
