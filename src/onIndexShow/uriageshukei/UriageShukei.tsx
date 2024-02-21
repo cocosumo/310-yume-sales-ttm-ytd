@@ -1,7 +1,7 @@
 import {Container} from '@chakra-ui/react';
 import Result from './result/Result';
 import Toolbar from './toolbar/Toolbar';
-import CustomProviders from 'components/CustomProviders';
+import {CustomProviders} from 'components';
 
 export default function UriageShukei() {
 	return (

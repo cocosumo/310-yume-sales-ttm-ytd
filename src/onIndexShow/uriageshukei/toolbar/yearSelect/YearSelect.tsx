@@ -1,5 +1,5 @@
 import {FormControl, FormLabel, Select} from '@chakra-ui/react';
-import {useYearRange} from 'onIndexShow/uriageshukei/hooks';
+import {useYearRange} from 'hooks';
 
 export default function YearSelect() {
 

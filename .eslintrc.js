@@ -44,7 +44,21 @@ module.exports = {
 				"unused-imports/no-unused-vars": [
 					"warn",
 					{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
-				]
+				],
+				"@typescript-eslint/naming-convention": [
+					"error",
+					{
+						"selector": "variable",
+						"format": ["camelCase", "PascalCase", "UPPER_CASE"],
+						"leadingUnderscore": "allow",
+						"trailingUnderscore": "allow",
+					},
+					{
+						"selector": "typeLike",
+						"format": ["PascalCase"],
+					},
+				],
+				
 			},
 		},
 	],

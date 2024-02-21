@@ -5,16 +5,14 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 const queryClient = new QueryClient();
 
 
-export default function CustomProviders({
+export const CustomProviders = ({
 	children,
 }: {
 	children: ReactNode;
-}) {
-	return (
-		<CustomChakraProvider>
-			<QueryClientProvider client={queryClient}>
-				{children}
-			</QueryClientProvider>
-		</CustomChakraProvider>
-	);
-}
+}) => (
+	<CustomChakraProvider>
+		<QueryClientProvider client={queryClient}>
+			{children}
+		</QueryClientProvider>
+	</CustomChakraProvider>
+);
