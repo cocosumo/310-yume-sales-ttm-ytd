@@ -5,8 +5,7 @@ import {type TyumeSales, type TYumeSaleKey} from 'types';
 
 
 export const getYearRange = async () => {
-	const thisYear = new Date().getFullYear();
-	const years = [thisYear];
+	const years = [];
 	const salesDateKey: TYumeSaleKey = 'salesDate';
 	const fields: TYumeSaleKey[] = [salesDateKey];
 	try {
@@ -21,7 +20,9 @@ export const getYearRange = async () => {
 		const [oldestRecord] = result.records as unknown as TyumeSales[];
 
 		if (oldestRecord) {
+			const thisYear = new Date().getFullYear();
 			const oldestRecordYear = Number(oldestRecord[salesDateKey].value.slice(0, 4));
+			
 			for (let i = thisYear; i >= oldestRecordYear; i--) {
 				years.push(i);
 			}
