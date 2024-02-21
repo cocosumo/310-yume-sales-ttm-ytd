@@ -14,7 +14,6 @@ export default function StoreSelect() {
 				))}
 			</Select>
 
-
 		</FormControl>
 	);
 }
