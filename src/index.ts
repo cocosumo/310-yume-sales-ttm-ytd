@@ -1,10 +1,10 @@
-import onIndexShow from "onIndexShow";
+import onIndexShow from 'onIndexShow';
 
 (() => {
 
-  kintone.events.on([
-    'app.record.index.show',
-  ], onIndexShow);
+	kintone.events.on([
+		'app.record.index.show',
+	], onIndexShow);
 
   
 })();

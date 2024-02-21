@@ -14,7 +14,7 @@ export default function ToolbarContainer({
 			bg={'white'}
 			boxShadow={'md'}
 			width={'100%'}
-			px={4}
+			p={4}
 			border={'1px'}
 			borderColor={'gray.200'}
 			position={'sticky'}

@@ -1,11 +1,11 @@
 import {Container} from '@chakra-ui/react';
 import Result from './result/Result';
 import Toolbar from './toolbar/Toolbar';
-import {ChakraProvider} from '@chakra-ui/react';
+import {CustomChakraProvider} from 'components/customChakraProvider';
 
 export default function UriageShukei() {
 	return (
-		<ChakraProvider>
+		<CustomChakraProvider>
 
 			<Container 
 				my={2}
@@ -15,7 +15,7 @@ export default function UriageShukei() {
 				<Toolbar />
 				<Result />
 			</Container>
-		</ChakraProvider>
+		</CustomChakraProvider>
 
 	);
 }
