@@ -1,0 +1,7 @@
+{
+  "exportall.config.folderListener": [
+    "/src/onIndexShow/uriageshukei/api",
+    "/src/onIndexShow/uriageshukei/hooks",
+    "/src/components"
+  ]
+}

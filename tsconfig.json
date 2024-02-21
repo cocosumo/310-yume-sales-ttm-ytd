@@ -3,7 +3,8 @@
 
     "target": "ES2020",
     "jsx": "react-jsx",
-   
+    "lib": ["dom", "dom.iterable", "esnext"],
+
     "module": "commonjs", 
 
     "baseUrl": "./src",
@@ -16,18 +17,22 @@
     "strict": true,     
     "noImplicitAny": true, 
     "strictNullChecks": true, 
-   
+    "isolatedModules": true,
+
     "skipDefaultLibCheck": true, 
     "skipLibCheck": true,  
     "noEmit": true,
+    "resolveJsonModule": true,
 
   },
+
   "files" : [
-    "./node_modules/@kintone/dts-gen/kintone.d.ts",
+    "./node_modules/@kintone/dts-gen/kintone.d.ts"
   ],
   "include": [
     "src", 
-  ], // which files to compile
-  "exclude": ["node_modules"], // which files to skip
+    "types"
+  ], 
+  "exclude": ["node_modules"] 
 
 }
