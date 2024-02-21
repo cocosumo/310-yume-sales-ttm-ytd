@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dtsgen": "dotenv -- kintone-dts-gen --app-id 311 --namespace YumeSales -o types/yume_sales.d.ts",
+    "dtsgen:stores": "dotenv -- kintone-dts-gen --app-id 19 --namespace Stores -o types/stores.d.ts",
     "dev": "esbuild src/index.ts --bundle --define:process.env.NODE_ENV='development' --outfile=dist/index.js  --watch",
-    "build": "dotenv -- esbuild src/index.ts --bundle --minify --define:process.env.NODE_ENV='production' --outfile=dist/index.js",
+    "build": "esbuild src/index.ts --bundle --minify --define:process.env.NODE_ENV='production' --outfile=dist/index.js",
     "upload:local": "dotenv -- npx kintone-customize-uploader dest/customize-manifest-local.json",
     "upload:prod": "dotenv -- npx kintone-customize-uploader dest/customize-manifest.json"
   },
