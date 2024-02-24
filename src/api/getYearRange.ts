@@ -1,5 +1,6 @@
 import {kintoneClient} from 'clients/kintoneClient';
 import {config} from 'config/config';
+import {getFiscalYear} from 'helpers/getFiscalYear';
 import {type TyumeSales, type TYumeSaleKey} from 'types';
 
 
@@ -20,7 +21,7 @@ export const getYearRange = async () => {
 		const [oldestRecord] = result.records as unknown as TyumeSales[];
 
 		if (oldestRecord) {
-			const thisYear = new Date().getFullYear();
+			const thisYear = getFiscalYear();
 			const oldestRecordYear = Number(oldestRecord[salesDateKey].value.slice(0, 4));
 			
 			for (let i = thisYear; i >= oldestRecordYear; i--) {

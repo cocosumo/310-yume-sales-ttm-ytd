@@ -1,0 +1,1 @@
+export const getBatch = (year: number) => (year % 100) - 9;
