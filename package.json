@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/cocosumo/310-yume-sales-ttm-ytd#readme",
   "devDependencies": {
+    "@hookform/devtools": "^4.3.1",
     "@jest/globals": "^29.7.0",
     "@kintone/dts-gen": "^8.0.2",
     "@tanstack/eslint-plugin-query": "^5.20.1",
@@ -48,6 +49,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.3.4",
     "@kintone/customize-uploader": "^8.0.9",
     "@kintone/rest-api-client": "^5.0.8",
     "@tanstack/react-query": "^5.22.2",
@@ -56,6 +58,8 @@
     "framer-motion": "^11.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ts-node": "^10.9.2"
+    "react-hook-form": "^7.50.1",
+    "ts-node": "^10.9.2",
+    "zod": "^3.22.4"
   }
 }
