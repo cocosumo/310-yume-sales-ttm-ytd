@@ -1,6 +1,7 @@
 declare namespace YumeSales {
   interface Fields {
     saleAmount: kintone.fieldTypes.Number;
+    salesDateKey: kintone.fieldTypes.SingleLineText;
     salesDate: kintone.fieldTypes.Date;
   }
   interface SavedFields extends Fields {
