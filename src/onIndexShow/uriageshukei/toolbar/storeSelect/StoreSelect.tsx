@@ -15,15 +15,23 @@ export default function StoreSelect() {
 			name='store'
 			render={({
 				field,
+				formState : {
+					errors,
+				},
 			}) => (
 				<FormControl 
 					size={'sm'} 
 					width={'200px'} 
 					orientation='horizontal'
-					{...field}
+					isInvalid={Boolean(errors.store)}
+
 				>
 					<FormLabel>店舗</FormLabel>
-					<Select placeholder='全店舗' variant='filled'>
+					<Select 
+						{...field} 
+						placeholder='全店舗' 
+						variant='filled'
+					>
 						{data?.map((store) => (
 							<option key={store.recordId} value={store.recordId}>{store.label}</option>
 						))}
