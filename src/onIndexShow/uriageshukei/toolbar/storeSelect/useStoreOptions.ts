@@ -6,7 +6,8 @@ export const useStoreOptions = () => {
 
 	const options = useMemo(
 		() => data?.map((store) => ({
-			value: store.uuid.value,
+			recordId: store.$id.value,
+			uuid: store.uuid.value,
 			label: store.storeNameShort.value,
 		})),
 		[data],
