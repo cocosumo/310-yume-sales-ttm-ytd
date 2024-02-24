@@ -9,6 +9,7 @@ export const getStores = async () => {
 		'uuid',
 		'sortNumber',
 		'storeNameShort',
+		'店舗名',
 	];
 
 	try {

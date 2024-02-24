@@ -20,6 +20,7 @@ export default function ToolbarContainer({
 			position={'sticky'}
 			top={14}
 			left={0}
+			mb={8}
 		>
 			
 			{children}
