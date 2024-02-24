@@ -4,7 +4,7 @@ import {getFiscalYear} from 'helpers/getFiscalYear';
 
 export const formSchema = z.object({
 	year: z.coerce.number(),
-	store: z.string().or(z.array(z.string())),
+	store: z.string(),
 });
 
 
@@ -15,7 +15,7 @@ export type FormType = z.infer<typeof formSchema>;
  */
 export const formDefault: FormType = {
 	year: getFiscalYear(),
-	store: [],
+	store: '',
 };
 
 /**

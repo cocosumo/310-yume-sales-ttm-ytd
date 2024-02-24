@@ -21,6 +21,7 @@ export default function ToolbarContainer({
 			top={14}
 			left={0}
 			mb={8}
+			zIndex={10}
 		>
 			
 			{children}
