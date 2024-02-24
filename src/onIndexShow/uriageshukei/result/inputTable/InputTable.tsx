@@ -7,7 +7,7 @@ import InputTBody from './InputTBody';
 
 export default function InputTable() {
 	return (
-		<TableContainer>
+		<TableContainer minW={'1200px'}>
 			<Table size={'sm'} variant='simple'>
 				<InputTHead />
 				<InputTBody />

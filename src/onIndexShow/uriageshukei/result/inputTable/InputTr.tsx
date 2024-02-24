@@ -1,6 +1,7 @@
 import {HStack, Td, Text, Tr} from '@chakra-ui/react';
 import {getBatch} from 'helpers/getBatch';
 import {useMonths} from './useMonths';
+import InputEditable from './InputEditable';
 
 export default function InputTr({
 	year,
@@ -33,7 +34,7 @@ export default function InputTr({
 			{
 				months.map((month) => (
 					<Td key={month} isNumeric>
-						{(Math.floor(Math.random() * 100000) + 10000).toLocaleString()}
+						<InputEditable year={year} month={month} />
 					</Td>
 				))
 			}

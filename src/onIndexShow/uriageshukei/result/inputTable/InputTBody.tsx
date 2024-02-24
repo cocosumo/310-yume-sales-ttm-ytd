@@ -24,7 +24,13 @@ export default function InputTBody() {
 	}, [selectedYear]); 
 
 	return (
-		<Tbody>
+		<Tbody
+			sx={{
+				'& tr > td' : {
+					padding: '0.25rem 0.25rem',
+				},
+			}}
+		>
 			{
 				showYears.map((yr) => (
 					<InputTr  
