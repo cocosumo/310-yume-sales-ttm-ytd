@@ -1,9 +1,18 @@
-import {useMutation} from '@tanstack/react-query';
+import {useMutation, useQueryClient} from '@tanstack/react-query';
 import {saveSales} from '../api';
 
-export const useSaveSales = () => useMutation({
-	mutationFn: saveSales,
-	onSuccess() {
-		console.log('Sales saved');
-	},
-});
+export const useSaveSales = () => {
+	const queryClient = useQueryClient();
+
+	
+	return useMutation({
+		mutationFn: saveSales,
+		async onSuccess() {
+			console.log('saved');
+			return queryClient.invalidateQueries({
+				queryKey: ['salesRecords'],
+
+			});
+		},
+	});
+};

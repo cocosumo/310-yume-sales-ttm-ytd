@@ -1,8 +1,8 @@
 import {Tbody} from '@chakra-ui/react';
-import {useTypedWatch} from 'onIndexShow/uriageshukei/hooks';
+import {useParsedSalesRecords, useTypedWatch} from 'onIndexShow/uriageshukei/hooks';
 import InputTr from './InputTr';
-import {useMemo} from 'react';
 import {type FormType} from 'onIndexShow/uriageshukei/formSettings';
+import {useDisplayYears} from '../../hooks/useDisplayYears';
 
 export default function InputTBody() {
 
@@ -10,19 +10,15 @@ export default function InputTBody() {
 		name: 'year',
 	}) as FormType['year'];
 
-	const showYears = useMemo(() => {
+	const parsedSelectedYear = Number(selectedYear);
 
-		const startYear = Number(selectedYear) - 2;
-		const endYear = Number(selectedYear) + 1;
-		const years = [];
+	const showYears = useDisplayYears(parsedSelectedYear);
+	const {
+		data = {},
+	} = useParsedSalesRecords();
 
-		for (let i = startYear; i < endYear; i++) {
-			years.push(i);
-		}
-
-		return years;
-	}, [selectedYear]); 
-
+	console.log('data', data);
+  
 	return (
 		<Tbody
 			sx={{
@@ -36,7 +32,8 @@ export default function InputTBody() {
 					<InputTr  
 						key={yr} 
 						year={yr} 
-						isSelected={yr === Number(selectedYear)}
+						isSelected={yr === parsedSelectedYear}
+						data={data[yr]}
 					/>
 				))
 			}
