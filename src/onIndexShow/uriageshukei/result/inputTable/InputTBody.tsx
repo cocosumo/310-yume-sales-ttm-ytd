@@ -21,7 +21,8 @@ export default function InputTBody() {
 		<Tbody
 			sx={{
 				'& tr > td' : {
-					padding: '0.25rem 0.25rem',
+					padding: '0.5rem 0.5rem',
+					height: '45px',	
 				},
 			}}
 		>

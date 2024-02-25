@@ -2,18 +2,19 @@
 
 import {Input} from '@chakra-ui/react';
 import useEnterKeyAsTab from 'hooks/useEnterKeyAsTab';
-import {useSaveSales, useStoreUuidByRecId} from 'onIndexShow/uriageshukei/hooks';
-import {useEffect, useMemo, useState} from 'react';
-import debounce from 'lodash.debounce';
+import {useSaveSales} from 'onIndexShow/uriageshukei/hooks';
+import {useEffect, useState} from 'react';
 
 export default function InputEditable({
 	year,
 	month,
 	data = 0,
+	storeUuid,
 }: {
 	year: number;
 	month: number;
 	data?: number;
+	storeUuid?: string;
 }) {
 	
 	const [hasFocus, setHasFocus] = useState(false);  
@@ -21,32 +22,9 @@ export default function InputEditable({
 	const [value, setValue] = useState<number | ''>(data);
 	const inputRef = useEnterKeyAsTab();
 	const {mutate} = useSaveSales();
-	const {data: storeUuid} = useStoreUuidByRecId();
-
-	const saveNewValue = useMemo(
-		() => debounce(
-			(newValue: number | string) => {
-				if (!storeUuid) {
-					return;
-				}
-
-				mutate({
-					fiscalYear: year,
-					month,
-					newSalesAmount: Number(newValue),
-					storeUuid,
-				});
-			}, 
-			300,
-		), [
-			year,
-			month,
-			mutate,
-			storeUuid,
-		]);
-
 
 	useEffect(() => {
+
 		setValue(data);
 	}, [data]);
 
@@ -58,7 +36,17 @@ export default function InputEditable({
 				setHasFocus(true); 
 			}}
 			onBlur={() => {
+				if (!storeUuid) {
+					return;
+				}
+
 				setHasFocus(false); 
+				mutate({
+					fiscalYear: year,
+					month,
+					newSalesAmount: Number(value),
+					storeUuid,
+				});
 			}}
 			onChange={(e) => {
 				console.log('fire');
@@ -79,7 +67,7 @@ export default function InputEditable({
 				} 
 
 				setValue(valueToSave);
-				saveNewValue(valueToSave);
+				// SaveNewValue(valueToSave);
 			}}
 
 			value={hasFocus ? value : value.toLocaleString()}

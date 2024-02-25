@@ -2,7 +2,7 @@ import {HStack, Td, Text, Tr} from '@chakra-ui/react';
 import {getBatch} from 'helpers/getBatch';
 import {useMonths} from '../../hooks/useMonths';
 import InputEditable from './InputEditable';
-import {type ParsedYearRecData} from 'onIndexShow/uriageshukei/hooks';
+import {useStoreUuidByRecId, type ParsedYearRecData} from 'onIndexShow/uriageshukei/hooks';
 
 export default function InputTr({
 	year,
@@ -18,6 +18,7 @@ export default function InputTr({
 }) {
 	const batch = getBatch(year); 
 	const months = useMonths();
+	const {data: storeUuid} = useStoreUuidByRecId();
 
 	return (
 		<Tr>
@@ -37,13 +38,28 @@ export default function InputTr({
 				</HStack>
 			</Td>
 
+			{!storeUuid && months.map((month) => {
+				let value: string | number = data.data[month];
+				if (typeof value === 'number') {
+					value = value.toLocaleString();
+				}
+
+				return (
+					<Td key={month} fontSize={'12px'} isNumeric>
+						{value}
+					</Td>
+				);
+			})}
+
 			{
-				months.map((month) => (
+				storeUuid && months.map((month) => (
 					<Td key={month} isNumeric>
+
 						<InputEditable 
 							year={year} 
 							month={month}
 							data={data.data[month] || 0}
+							storeUuid={storeUuid}
 						/>
 					</Td>
 				))
