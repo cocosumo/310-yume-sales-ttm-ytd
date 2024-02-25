@@ -2,7 +2,7 @@
 
 import {Input} from '@chakra-ui/react';
 import useEnterKeyAsTab from 'hooks/useEnterKeyAsTab';
-import {useSaveSales} from 'onIndexShow/uriageshukei/hooks';
+import {useSaveSales, useStoreUuidByRecId} from 'onIndexShow/uriageshukei/hooks';
 import {useEffect, useMemo, useState} from 'react';
 import debounce from 'lodash.debounce';
 
@@ -15,21 +15,26 @@ export default function InputEditable({
 	month: number;
 	data?: number;
 }) {
+	
 	const [hasFocus, setHasFocus] = useState(false);  
 
 	const [value, setValue] = useState<number | ''>(data);
-
 	const inputRef = useEnterKeyAsTab();
 	const {mutate} = useSaveSales();
+	const {data: storeUuid} = useStoreUuidByRecId();
 
 	const saveNewValue = useMemo(
 		() => debounce(
 			(newValue: number | string) => {
+				if (!storeUuid) {
+					return;
+				}
 
 				mutate({
 					fiscalYear: year,
 					month,
 					newSalesAmount: Number(newValue),
+					storeUuid,
 				});
 			}, 
 			300,
@@ -37,6 +42,7 @@ export default function InputEditable({
 			year,
 			month,
 			mutate,
+			storeUuid,
 		]);
 
 

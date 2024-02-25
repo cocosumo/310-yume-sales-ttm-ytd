@@ -7,22 +7,28 @@ export const saveSales = async ({
 	fiscalYear,
 	month,
 	newSalesAmount,
+	storeUuid,
 }: {
 	fiscalYear: number;
 	month: number;
 	newSalesAmount: number | string;
+	storeUuid: string;
 }) => {
-	const keyField: TYumeSaleKey = 'salesDateKey';
+	const keyField: TYumeSaleKey = 'salesFieldKey';
 	const formattedDate = getActualDateFromFiscalDate({
 		fiscalYear,
 		month,
 	}); 
+	const keyFieldValue = `${formattedDate}_${storeUuid}`;
 
 	console.log('RECORD', fiscalYear, month);
 	console.log('RECORD_SAVETO', formattedDate);
 
 
 	const updatedRecord: Partial<TyumeSales> = {
+		storeUuid: {
+			value: storeUuid,
+		},
 		saleAmount: {
 			value: String(newSalesAmount),
 		},
@@ -35,7 +41,7 @@ export const saveSales = async ({
 		app: config.appId,
 		updateKey: {
 			field: keyField,
-			value: formattedDate,
+			value: keyFieldValue,
 		},
 		
 		record: updatedRecord,

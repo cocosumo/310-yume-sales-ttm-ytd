@@ -7,6 +7,7 @@ describe('saveSales', () => {
 			fiscalYear: 2024, 
 			month: 3, 
 			newSalesAmount: 30000,
+			storeUuid: '123',
 		});
 
 		console.log('result', result);

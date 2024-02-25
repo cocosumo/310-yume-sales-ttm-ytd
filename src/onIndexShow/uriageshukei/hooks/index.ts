@@ -5,4 +5,5 @@ export * from './useSalesRecords';
 export * from './useSaveSales';
 export * from './useSaveToQueryParams';
 export * from './useSelectedStoreName';
+export * from './useStoreUuidByRecId';
 export * from './useTypedRHF';

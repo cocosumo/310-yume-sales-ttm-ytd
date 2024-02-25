@@ -8,26 +8,34 @@ import {type TYumeSaleKey, type TyumeSales} from 'types';
  * @param param0
  * @param param0.start yyyy-mm-dd
  * @param param0.end yyyy-mm-dd
+ * @param storeUuid
  * @returns Sales Records
  */
 export const getSalesRecords = async ({
 	start,
 	end,
+	storeUuid,
 }: {
 	start: string;
 	end: string;
+	storeUuid?: string;
 }) => {
   
 	try {
 		const dateKey: TYumeSaleKey = 'salesDate';
+		const storeKey: TYumeSaleKey = 'storeUuid';
 		const fields: TYumeSaleKey[] = [dateKey, 'saleAmount']; 
 
 		const condition = [
 			`${dateKey} >= "${start}"`,
 			`${dateKey} <= "${end}"`,
-		].join(' and ');
+		];
 
-		const queryStr = `${condition} order by ${dateKey} asc limit 500 `;
+		if (storeUuid) condition.push(`${storeKey} = "${storeUuid}"`);
+
+		const conditionStr = condition.join(' and ');
+
+		const queryStr = `${conditionStr} order by ${dateKey} asc limit 500 `;
 
 		const result  = await kintoneClient.record.getRecords({
 			app: config.appId,

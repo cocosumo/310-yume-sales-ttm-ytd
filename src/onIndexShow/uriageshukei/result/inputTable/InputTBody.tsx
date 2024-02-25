@@ -16,8 +16,6 @@ export default function InputTBody() {
 	const {
 		data = {},
 	} = useParsedSalesRecords();
-
-	console.log('data', data);
   
 	return (
 		<Tbody
