@@ -1,14 +1,20 @@
 import {HStack, Td, Text, Tr} from '@chakra-ui/react';
 import {getBatch} from 'helpers/getBatch';
-import {useMonths} from './useMonths';
+import {useMonths} from '../../hooks/useMonths';
 import InputEditable from './InputEditable';
+import {type ParsedYearRecData} from 'onIndexShow/uriageshukei/hooks';
 
 export default function InputTr({
 	year,
 	isSelected = false,
+	data = {
+		data: {},
+		total: 0,
+	},
 }: {
 	year: number;
 	isSelected?: boolean;
+	data?: ParsedYearRecData;
 }) {
 	const batch = getBatch(year); 
 	const months = useMonths();
@@ -25,8 +31,8 @@ export default function InputTr({
 						{batch}期
 					</Text>
 
-					<Text as='span' fontSize={'md'} color={'InfoText'}>
-						{year}年
+					<Text as='span' fontSize={'sm'} color={'InfoText'}>
+						{year}年9月～
 					</Text>
 				</HStack>
 			</Td>
@@ -34,13 +40,17 @@ export default function InputTr({
 			{
 				months.map((month) => (
 					<Td key={month} isNumeric>
-						<InputEditable year={year} month={month} />
+						<InputEditable 
+							year={year} 
+							month={month}
+							data={data.data[month] || 0}
+						/>
 					</Td>
 				))
 			}
 
 			<Td isNumeric>
-				{(Math.floor(Math.random() * 1000000) + 100000).toLocaleString()}
+				{(data.total || 0).toLocaleString()}
 			</Td>
 
 		</Tr>

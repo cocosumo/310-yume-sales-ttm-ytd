@@ -1,20 +1,26 @@
 import {kintoneClient} from 'clients/kintoneClient';
 import {config} from 'config/config';
-import {formatDate} from 'date-fns';
+import {getActualDateFromFiscalDate} from 'helpers/getActualDateFromFiscalDate';
 import {type TyumeSales, type TYumeSaleKey} from 'types';
 
 export const saveSales = async ({
-	year,
+	fiscalYear,
 	month,
 	newSalesAmount,
 }: {
-	year: number;
+	fiscalYear: number;
 	month: number;
-	newSalesAmount: number;
+	newSalesAmount: number | string;
 }) => {
 	const keyField: TYumeSaleKey = 'salesDateKey';
-	const parsedDate = new Date(year, month - 1, 1);
-	const formattedDate = formatDate(parsedDate, 'yyyy-MM-dd'); 
+	const formattedDate = getActualDateFromFiscalDate({
+		fiscalYear,
+		month,
+	}); 
+
+	console.log('RECORD', fiscalYear, month);
+	console.log('RECORD_SAVETO', formattedDate);
+
 
 	const updatedRecord: Partial<TyumeSales> = {
 		saleAmount: {

@@ -1,5 +1,5 @@
 import {Th, Thead, Tr} from '@chakra-ui/react';
-import {useMonths} from './useMonths';
+import {useMonths} from '../../hooks/useMonths';
 
 export const InputTHead = () => {
 	const months = useMonths();

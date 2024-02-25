@@ -1,39 +1,52 @@
 
 
 import {Input} from '@chakra-ui/react';
-import {useDebounce} from '@uidotdev/usehooks';
 import useEnterKeyAsTab from 'hooks/useEnterKeyAsTab';
 import {useSaveSales} from 'onIndexShow/uriageshukei/hooks';
-import {useEffect, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
+import debounce from 'lodash.debounce';
 
 export default function InputEditable({
 	year,
 	month,
+	data = 0,
 }: {
 	year: number;
 	month: number;
+	data?: number;
 }) {
-	const [isDirty, setIsDirty] = useState(false);
 	const [hasFocus, setHasFocus] = useState(false);  
-	const [value, setValue] = useState<number | ''>('');
+
+	const [value, setValue] = useState<number | ''>(data);
+
 	const inputRef = useEnterKeyAsTab();
 	const {mutate} = useSaveSales();
-	const debouncedValue = useDebounce(value, 1000);
 
-	useEffect(() => {
-		if (!isDirty) {
-			return;
-		}
+	const saveNewValue = useMemo(
+		() => debounce(
+			(newValue: number | string) => {
 
-		mutate({
+				mutate({
+					fiscalYear: year,
+					month,
+					newSalesAmount: Number(newValue),
+				});
+			}, 
+			300,
+		), [
 			year,
 			month,
-			newSalesAmount: Number(debouncedValue),
-		});
-	}, [debouncedValue, isDirty, mutate, month, year]);
+			mutate,
+		]);
+
+
+	useEffect(() => {
+		setValue(data);
+	}, [data]);
 
 	return (
 		<Input 
+			
 			ref={inputRef}
 			onFocus={() => {
 				setHasFocus(true); 
@@ -46,6 +59,7 @@ export default function InputEditable({
 				const newValue = e.target.value;
 
 				const parsedN = Number(newValue.replace(/,/g, ''));
+				let valueToSave: number | '' = parsedN;
 
 				if (isNaN(parsedN)) {
 					return;
@@ -55,13 +69,11 @@ export default function InputEditable({
 					newValue === ''
         || isNaN(parsedN)
 				) {
-					setValue('');
-				} else {
-					setValue(parsedN);
-				}
+					valueToSave = '';
+				} 
 
-				setIsDirty(true);
-
+				setValue(valueToSave);
+				saveNewValue(valueToSave);
 			}}
 
 			value={hasFocus ? value : value.toLocaleString()}
