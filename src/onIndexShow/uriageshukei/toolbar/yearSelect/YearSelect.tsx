@@ -1,4 +1,5 @@
 import {FormControl, FormLabel, Select} from '@chakra-ui/react';
+import {getFiscalYear} from 'helpers/getFiscalYear';
 import {useYearRange} from 'hooks';
 import {useTypedForm} from 'onIndexShow/uriageshukei/hooks';
 import {Controller} from 'react-hook-form';
@@ -17,10 +18,10 @@ export default function YearSelect() {
 				<FormControl width={'200px'}>
 					<FormLabel size={'xs'}>年度</FormLabel>
 					<Select 
-						placeholder='選択してください' 
+						{...field} 
 						variant='filled' 
 						size='md'
-						{...field} 
+						value={field.value || getFiscalYear()}
 					>
 						{data?.map((year) => (
 							<option key={year} value={year}>{year}</option>
