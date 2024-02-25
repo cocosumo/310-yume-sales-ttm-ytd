@@ -39,13 +39,20 @@ export default function InputTr({
 			</Td>
 
 			{!storeUuid && months.map((month) => {
-				let value: string | number = data.data[month];
-				if (typeof value === 'number') {
+				let value: string | number = data.data[month] || '';
+
+				if (typeof value === 'number' && value !== 0) {
 					value = value.toLocaleString();
 				}
 
 				return (
-					<Td key={month} fontSize={'12px'} isNumeric>
+					<Td 
+						key={month} 
+						fontSize={'12px'} 
+						isNumeric
+						bgColor={value === '' ? 'gray.100' : ''}
+
+					>
 						{value}
 					</Td>
 				);
