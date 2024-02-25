@@ -1,8 +1,10 @@
 
 
 import {Input} from '@chakra-ui/react';
+import {useDebounce} from '@uidotdev/usehooks';
 import useEnterKeyAsTab from 'hooks/useEnterKeyAsTab';
-import {useState} from 'react';
+import {useSaveSales} from 'onIndexShow/uriageshukei/hooks';
+import {useEffect, useState} from 'react';
 
 export default function InputEditable({
 	year,
@@ -11,10 +13,24 @@ export default function InputEditable({
 	year: number;
 	month: number;
 }) {
+	const [isDirty, setIsDirty] = useState(false);
 	const [hasFocus, setHasFocus] = useState(false);  
 	const [value, setValue] = useState<number | ''>('');
 	const inputRef = useEnterKeyAsTab();
-  
+	const {mutate} = useSaveSales();
+	const debouncedValue = useDebounce(value, 1000);
+
+	useEffect(() => {
+		if (!isDirty) {
+			return;
+		}
+
+		mutate({
+			year,
+			month,
+			newSalesAmount: Number(debouncedValue),
+		});
+	}, [debouncedValue, isDirty, mutate, month, year]);
 
 	return (
 		<Input 
@@ -26,6 +42,7 @@ export default function InputEditable({
 				setHasFocus(false); 
 			}}
 			onChange={(e) => {
+				console.log('fire');
 				const newValue = e.target.value;
 
 				const parsedN = Number(newValue.replace(/,/g, ''));
@@ -42,6 +59,9 @@ export default function InputEditable({
 				} else {
 					setValue(parsedN);
 				}
+
+				setIsDirty(true);
+
 			}}
 
 			value={hasFocus ? value : value.toLocaleString()}

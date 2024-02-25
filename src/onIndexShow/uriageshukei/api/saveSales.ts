@@ -16,8 +16,6 @@ export const saveSales = async ({
 	const parsedDate = new Date(year, month - 1, 1);
 	const formattedDate = formatDate(parsedDate, 'yyyy-MM-dd'); 
 
-	console.log('recordKeyValue', formattedDate);
-
 	const updatedRecord: Partial<TyumeSales> = {
 		saleAmount: {
 			value: String(newSalesAmount),
