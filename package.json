@@ -29,7 +29,7 @@
     "@tanstack/eslint-plugin-query": "^5.20.1",
     "@types/jest": "^29.5.12",
     "@types/lodash.debounce": "^4.0.9",
-    "@types/node": "^20.11.19",
+    "@types/node": "^20.11.20",
     "@types/qs": "^6.9.11",
     "dotenv-cli": "^7.3.0",
     "esbuild": "^0.20.1",
