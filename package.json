@@ -33,7 +33,7 @@
     "@types/qs": "^6.9.11",
     "dotenv-cli": "^7.3.0",
     "esbuild": "^0.20.1",
-    "eslint": "^8.55.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-xo": "^0.44.0",
     "eslint-config-xo-typescript": "^2.0.0",
