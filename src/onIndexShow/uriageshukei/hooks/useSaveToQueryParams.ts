@@ -24,9 +24,11 @@ export const useSaveToQueryParams = (formMethods: UseFormReturn<FormType>) => {
 
 
 	useEffect(() => {
-		const subscription = watch(() => handleSubmit(onSubmit)());
+		const subscription = watch(async () => handleSubmit(onSubmit)());
 
-		return () => subscription.unsubscribe();
+		return () => {
+			subscription.unsubscribe(); 
+		};
 		
 	}, [watch, handleSubmit]);
 
