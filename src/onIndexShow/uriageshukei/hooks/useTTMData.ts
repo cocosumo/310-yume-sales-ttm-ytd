@@ -20,7 +20,7 @@ export const useTTMData = () => {
 	const ttmData: TTMDataResult = useMemo(() => {
 		if (!data || !selectedFiscalYear) return {};
 
-		const result: any = {};
+		const result: TTMDataResult = {};
 		for (let yearIdx = selectedFiscalYear; yearIdx > selectedFiscalYear - 2; yearIdx--) {
 			for (let m = 0; m < 12; m++) {
 				let sum = 0;

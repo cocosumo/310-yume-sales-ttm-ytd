@@ -23,6 +23,7 @@ export const MonthTableHead = ({
 					sx={{
 						width: '95px',
 					}} 
+					color={'gray.500'}
 					key={month} 
 					textAlign={'center'}>
 					{month}月
