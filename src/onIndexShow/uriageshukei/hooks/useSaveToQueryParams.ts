@@ -22,12 +22,13 @@ export const useSaveToQueryParams = (formMethods: UseFormReturn<FormType>) => {
 	};  
 
 
-
+	// https://stackoverflow.com/a/70119332
 	useEffect(() => {
-		const subscription = watch(() => handleSubmit(onSubmit)());
+		const subscription = watch(async () => handleSubmit(onSubmit)());
 
-		return () => subscription.unsubscribe();
-		
+		return () => {
+			subscription.unsubscribe(); 
+		};
 	}, [watch, handleSubmit]);
 
 };
