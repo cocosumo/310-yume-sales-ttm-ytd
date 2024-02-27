@@ -23,9 +23,7 @@ export default function TtmTable() {
 					},
           
 				}}
-				layout={'fixed'}
-        
-			
+				layout={'fixed'}			
 			>
 				<TtmTHead/>
 				<TtmTBody/>
