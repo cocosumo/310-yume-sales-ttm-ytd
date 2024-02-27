@@ -1,8 +1,9 @@
-import {VStack} from '@chakra-ui/react';
+import {HStack, VStack} from '@chakra-ui/react';
 import InputTable from './inputTable/InputTable';
 import ResultTitle from './ResultTitle';
 import TtmTable from './ttmTable/TtmTable';
 import YtdTable from './ytdTable/YtdTable';
+import TtmChart from './ttmChart/TtmChart';
 
 export default function Result() {
 	return (
@@ -16,6 +17,9 @@ export default function Result() {
 			<InputTable />
 			<TtmTable />
 			<YtdTable />
+			<HStack>
+				<TtmChart />
+			</HStack>
 		</VStack>
 	);
 }

@@ -44,7 +44,7 @@ export default function InputEditable({
 
 	return (
 		<Input 
-			bgColor={displayValue === '' ? 'gray.100' : ''}
+			bgColor={!hasFocus && displayValue === '' ? 'gray.100' : ''}
 			ref={inputRef}
 			onFocus={() => {
 				setHasFocus(true); 

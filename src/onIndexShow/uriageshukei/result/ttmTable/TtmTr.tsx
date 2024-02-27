@@ -9,7 +9,6 @@ export const TtmTr = ({
 	data?: TTMDataResult[number];
 }) => {
 	const months = useMonths();
-	console.log('fiscalYear', fiscalYear);
 	
 	return (
 
