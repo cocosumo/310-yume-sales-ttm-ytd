@@ -32,12 +32,12 @@ export const useTTMData = () => {
 
 				// Sum of previous year
 				for (let prev = m + 1; prev < 12; prev++) {
-					sum += Number(data[yearIdx - 1].data[months[prev]] ?? 0);
+					sum += Number(data[yearIdx - 1]?.data?.[months[prev]] ?? 0);
 				}
 
 				// Sum of current year
 				for (let cur = 0; cur <= m; cur++) {
-					sum += Number(data[yearIdx].data[months[cur]] ?? 0);
+					sum += Number(data[yearIdx]?.data?.[months[cur]] ?? 0);
 				}
 				
 				result[yearIdx] ||= {};

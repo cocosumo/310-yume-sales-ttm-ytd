@@ -3,6 +3,7 @@ import {
 	TableContainer,
 } from '@chakra-ui/react';
 import {YtdTHead} from './YtdTHead';
+import {YtdTBody} from './YtdTBody';
 
 
 export default function YtdTable() {
@@ -25,6 +26,7 @@ export default function YtdTable() {
 				layout={'fixed'}
 			>
 				<YtdTHead/>
+				<YtdTBody/>
 			</Table>
 		</TableContainer>
 	);

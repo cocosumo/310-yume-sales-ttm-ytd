@@ -16,16 +16,32 @@ export const useYTDData = () => {
 
 	const {data} = useParsedSalesRecords();
 
-	const ttmData = useMemo(() => {
+	const ytdData = useMemo(() => {
 		if (!data || !selectedFiscalYear) return {};
     
 		const result: YTDDataResult = {};
-		const cummulativeSum = 0;
-		// For ()
+		for (let yearIdx = selectedFiscalYear; yearIdx >= selectedFiscalYear - 2; yearIdx--) {
+			let cummulative = 0;
+			for (let m = 0; m < 12; m++) {
+				const currentMonthAmount = data[yearIdx]?.data?.[months[m]] ?? 0;
+
+				if (!currentMonthAmount) {
+					continue;
+				}
+
+				cummulative += Number(currentMonthAmount);
+				result[yearIdx] ||= {};
+				result[yearIdx][months[m]] = cummulative;
+
+			}
+			
+		}
 
 
 		return result;
 
 
-	}, [data]);
+	}, [data, selectedFiscalYear, months]);
+
+	return ytdData;
 };
