@@ -71,9 +71,6 @@ export default function YtdChart() {
 					wrapperStyle={{fontSize: 10}}
 				/>
 
-				
-
-
 			</LineChart>
 		</VStack>
 	);
