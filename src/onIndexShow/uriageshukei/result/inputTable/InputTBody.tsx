@@ -22,7 +22,7 @@ export default function InputTBody() {
 			sx={{
 				'& tr > td' : {
 					padding: '0.5rem 0.5rem',
-					height: '45px',	
+					height: '35px',	
 				},
 			}}
 		>

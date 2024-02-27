@@ -10,7 +10,7 @@ export const useStoreUuidByRecId = () => {
 
 	return useStores({
 		select: useCallback((data) => {
-			console.log('trggeredssss');
+			if (!storeId) return;
 			const store = data.find((store) => store.$id.value === storeId);
 			return store?.uuid.value;
 		}, [storeId]),

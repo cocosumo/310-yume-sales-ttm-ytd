@@ -9,7 +9,7 @@ export const useDisplayYears = (year: number) => {
 		const endYear = year + 1;
 		const years = [];
 
-		for (let i = startYear; i < endYear; i++) {
+		for (let i = startYear; i <= endYear; i++) {
 			years.push(i);
 		}
 

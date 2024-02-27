@@ -20,7 +20,7 @@ export const useTTMData = () => {
 	const ttmData: TTMDataResult = useMemo(() => {
 		if (!data || !selectedFiscalYear) return {};
 
-		const result: any = {};
+		const result: TTMDataResult = {};
 		for (let yearIdx = selectedFiscalYear; yearIdx > selectedFiscalYear - 2; yearIdx--) {
 			for (let m = 0; m < 12; m++) {
 				let sum = 0;
@@ -32,12 +32,12 @@ export const useTTMData = () => {
 
 				// Sum of previous year
 				for (let prev = m + 1; prev < 12; prev++) {
-					sum += Number(data[yearIdx - 1].data[months[prev]] ?? 0);
+					sum += Number(data[yearIdx - 1]?.data?.[months[prev]] ?? 0);
 				}
 
 				// Sum of current year
 				for (let cur = 0; cur <= m; cur++) {
-					sum += Number(data[yearIdx].data[months[cur]] ?? 0);
+					sum += Number(data[yearIdx]?.data?.[months[cur]] ?? 0);
 				}
 				
 				result[yearIdx] ||= {};

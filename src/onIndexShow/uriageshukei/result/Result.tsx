@@ -1,7 +1,8 @@
 import {VStack} from '@chakra-ui/react';
 import InputTable from './inputTable/InputTable';
 import ResultTitle from './ResultTitle';
-import TtmTable from './ttmTable/ttmTable';
+import TtmTable from './ttmTable/TtmTable';
+import YtdTable from './ytdTable/YtdTable';
 
 export default function Result() {
 	return (
@@ -14,6 +15,7 @@ export default function Result() {
 			<ResultTitle />
 			<InputTable />
 			<TtmTable />
+			<YtdTable />
 		</VStack>
 	);
 }
