@@ -24,7 +24,7 @@ export const TtmTr = ({
 				return (
 					<Td 
 						key={month} 
-						fontSize={'12px'} 
+						fontSize={'11px'} 
 						isNumeric
 						bgColor={value === '' ? 'gray.100' : ''}
 					>

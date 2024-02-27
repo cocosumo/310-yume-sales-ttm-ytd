@@ -28,9 +28,23 @@ export default function InputEditable({
 		setValue(data);
 	}, [data]);
 
+	let displayValue: number | string = '';
+
+	if (hasFocus) {
+		if (value !== 0) {
+			displayValue = value;
+		}
+	} else if (value === 0) {
+		displayValue = '';
+	} else {
+		displayValue = value.toLocaleString();
+
+	}
+
+
 	return (
 		<Input 
-			
+			bgColor={displayValue === '' ? 'gray.100' : ''}
 			ref={inputRef}
 			onFocus={() => {
 				setHasFocus(true); 
@@ -70,12 +84,12 @@ export default function InputEditable({
 				// SaveNewValue(valueToSave);
 			}}
 
-			value={hasFocus ? value : value.toLocaleString()}
+			value={displayValue}
 			fontSize={'12px'}
 			textAlign={'right'}
 			width={'80px'}
 			size={'sm'}
-			placeholder={hasFocus ? String(value) : '0'}
+			
 			px={1}
 		/>
 
