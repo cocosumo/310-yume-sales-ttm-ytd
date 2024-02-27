@@ -4,6 +4,7 @@ import ResultTitle from './ResultTitle';
 import TtmTable from './ttmTable/TtmTable';
 import YtdTable from './ytdTable/YtdTable';
 import TtmChart from './ttmChart/TtmChart';
+import YtdChart from './ytdChart/YtdChart';
 
 export default function Result() {
 	return (
@@ -19,6 +20,7 @@ export default function Result() {
 			<YtdTable />
 			<HStack>
 				<TtmChart />
+				<YtdChart />
 			</HStack>
 		</VStack>
 	);
