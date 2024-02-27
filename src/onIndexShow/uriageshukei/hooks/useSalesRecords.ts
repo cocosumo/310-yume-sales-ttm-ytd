@@ -24,8 +24,6 @@ export const useSalesRecords = <T = unknown>({
 	const {data: storeUuid} = useStoreUuidByRecId();
 	const range = getFiscalYearRange(Number(year), 2);
 
-	console.log('storeUid', storeUuid);
-
 	return useQuery({
 		queryKey: ['salesRecords', {...range, storeUuid}],
 		queryFn: async () => getSalesRecords({...range, storeUuid}),

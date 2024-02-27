@@ -3,7 +3,7 @@ import {useSalesRecords} from './useSalesRecords';
 import {useCallback} from 'react';
 
 
-export type ParsedMonthRecord = Record<number, number | ''>;
+export type ParsedMonthRecord = Record<number, number>;
 
 export type ParsedYearRecData = {
 	data: ParsedMonthRecord;
@@ -20,14 +20,16 @@ export const useParsedSalesRecords = () => useSalesRecords<ParsedSalesRecords>({
 		
 		const fiscalYear = getFiscalYear(new Date(year, month - 1, 1));
 	
-		const amount = cur.saleAmount.value ? Number(cur.saleAmount.value) : '';
+		const amount = Number(cur.saleAmount.value);
 
 		acc[fiscalYear] ||= {
-			data: {},
+			data: {
+
+			},
 			total: 0,
 		};
 
-		acc[fiscalYear].data[month] = amount;
+		acc[fiscalYear].data[month] = Number(acc[fiscalYear].data[month] ?? 0) + amount;
 		acc[fiscalYear].total += Number(amount);
 
 		return acc;

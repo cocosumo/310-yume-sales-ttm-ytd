@@ -15,7 +15,13 @@ export const YtdTBody = () => {
 	console.log('ytdData', data);
 
 	return (
-		<Tbody>
+		<Tbody
+			sx={{
+				'& tr > td' : {
+					padding: '0.5rem 0.5rem',
+				},
+			}}
+		>
 			{
 				showYears.map((yr) => (
 					<TtmTr 

@@ -9,7 +9,6 @@ export const TtmTr = ({
 	data?: TTMDataResult[number];
 }) => {
 	const months = useMonths();
-	console.log('fiscalYear', fiscalYear);
 	
 	return (
 
@@ -24,7 +23,7 @@ export const TtmTr = ({
 				return (
 					<Td 
 						key={month} 
-						fontSize={'12px'} 
+						fontSize={'11px'} 
 						isNumeric
 						bgColor={value === '' ? 'gray.100' : ''}
 					>
