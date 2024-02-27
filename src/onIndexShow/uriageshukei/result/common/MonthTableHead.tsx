@@ -22,6 +22,9 @@ export const MonthTableHead = ({
 				<Th 
 					sx={{
 						width: '95px',
+						'@media print': {
+							width: '75px',
+						},
 					}} 
 					color={'gray.500'}
 					key={month} 

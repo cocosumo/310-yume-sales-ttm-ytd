@@ -9,16 +9,18 @@ import YtdChart from './ytdChart/YtdChart';
 export default function Result() {
 	return (
 		<VStack
-			height={'2000px'}
 			alignItems={'flex-start'}
 			px={4}
+			py={4}
 			spacing={8}
+			id={'printable'}
+			width={'100%'}
 		>
 			<ResultTitle />
 			<InputTable />
 			<TtmTable />
 			<YtdTable />
-			<HStack>
+			<HStack justifyContent={'space-between'} width={'100%'}>
 				<TtmChart />
 				<YtdChart />
 			</HStack>

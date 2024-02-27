@@ -37,13 +37,13 @@ export default function YtdChart() {
 
 
 	return (
-		<VStack>
+		<VStack px={4}>
 			<Text fontSize='sm' fontWeight={'bold'} color={'gray.600'}>
         YTD
 			</Text>
 			<LineChart 
-				width={600} 
-				height={350} 
+				width={580} 
+				height={250} 
 			>
 
 				<CartesianGrid 
@@ -62,7 +62,7 @@ export default function YtdChart() {
 					/>
 				))}
 				<XAxis dataKey="monthKey" tick={{fontSize: 10}} tickCount={12} allowDuplicatedCategory={false}/>
-				<YAxis dataKey="amount" width={100} tickCount={8} tick={{fontSize: 10}}/>
+				<YAxis dataKey="amount" width={60} tickCount={8} tick={{fontSize: 10}}/>
 				<Tooltip 
 					formatter={(value: number) => value.toLocaleString()}
 				/>

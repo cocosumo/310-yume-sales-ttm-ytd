@@ -22,6 +22,7 @@ export default function ToolbarContainer({
 			left={0}
 			mb={8}
 			zIndex={10}
+			justifyContent={'space-between'}
 		>
 			
 			{children}

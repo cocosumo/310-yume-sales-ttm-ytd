@@ -1,7 +1,7 @@
-import {Tbody} from '@chakra-ui/react';
 import {TtmTr} from './TtmTr';
 import {type FormType} from 'onIndexShow/uriageshukei/formSettings';
 import {useTTMData, useTypedWatch} from 'onIndexShow/uriageshukei/hooks';
+import CustomTBody from '../common/CustomTBody';
 
 export const TtmTBody = () => {
 	const year = useTypedWatch({
@@ -13,13 +13,7 @@ export const TtmTBody = () => {
 	const data = useTTMData();
 
 	return (
-		<Tbody
-			sx={{
-				'& tr > td' : {
-					padding: '0.5rem 0.5rem',
-				},
-			}}
-		>
+		<CustomTBody>
 			{
 				showYears.map((yr) => (
 					<TtmTr 
@@ -29,6 +23,6 @@ export const TtmTBody = () => {
 					/>
 				))
 			}
-		</Tbody>
+		</CustomTBody>
 	);
 };

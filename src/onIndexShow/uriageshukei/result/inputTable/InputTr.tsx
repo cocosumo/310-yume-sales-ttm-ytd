@@ -72,7 +72,7 @@ export default function InputTr({
 				))
 			}
 
-			<Td isNumeric>
+			<Td fontSize={'12px'} isNumeric>
 				{(data.total || 0).toLocaleString()}
 			</Td>
 
