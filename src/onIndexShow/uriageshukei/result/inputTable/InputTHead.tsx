@@ -5,7 +5,18 @@ export const InputTHead = () => (
 	<Thead>
 		<Tr>
 			<MonthTableHead />
-			<Th width={'120px'} textAlign={'center'}>合計</Th>
+			<Th 
+				textAlign={'center'}
+				sx={{
+					width: '120px',
+					'@media print': {
+						width: '100px',
+					},
+			
+				}}
+			>
+					合計
+			</Th>
 		</Tr>
 	</Thead>
 );

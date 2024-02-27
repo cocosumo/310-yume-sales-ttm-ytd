@@ -1,7 +1,7 @@
-import {Tbody} from '@chakra-ui/react';
 import {useTypedWatch, useYTDData} from 'onIndexShow/uriageshukei/hooks';
 import {TtmTr} from '../ttmTable/TtmTr';
 import {type FormType} from 'onIndexShow/uriageshukei/formSettings';
+import CustomTBody from '../common/CustomTBody';
 
 export const YtdTBody = () => {
 	const year = useTypedWatch({
@@ -12,16 +12,8 @@ export const YtdTBody = () => {
 	
 	const showYears = Array.from({length: 3}, (_, i) => year - 2 + i);
 	
-	console.log('ytdData', data);
-
 	return (
-		<Tbody
-			sx={{
-				'& tr > td' : {
-					padding: '0.5rem 0.5rem',
-				},
-			}}
-		>
+		<CustomTBody>
 			{
 				showYears.map((yr) => (
 					<TtmTr 
@@ -31,6 +23,6 @@ export const YtdTBody = () => {
 					/>
 				))
 			}
-		</Tbody>
+		</CustomTBody>
 	);
 };

@@ -24,6 +24,13 @@ export default function InputTBody() {
 					padding: '0.5rem 0.5rem',
 					height: '35px',	
 				},
+				'@media print':{
+					'& tr > td' : {
+						padding: '0.25rem 0.25rem',
+						height: '35px',	
+						fontSize: '0.8rem',
+					},
+				},
 			}}
 		>
 			{
