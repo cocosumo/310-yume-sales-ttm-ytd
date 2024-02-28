@@ -3,12 +3,16 @@ import {TtmTr} from '../ttmTable/TtmTr';
 import {type FormType} from 'onIndexShow/uriageshukei/formSettings';
 import CustomTBody from '../common/CustomTBody';
 
-export const YtdTBody = () => {
+export const YtdTBody = ({
+	store,
+}: {
+	store: string;
+}) => {
 	const year = useTypedWatch({
 		name: 'year',
 	}) as FormType['year'];
 
-	const data = useYTDData();
+	const data = useYTDData({store});
 	
 	const showYears = Array.from({length: 3}, (_, i) => year - 2 + i);
 	

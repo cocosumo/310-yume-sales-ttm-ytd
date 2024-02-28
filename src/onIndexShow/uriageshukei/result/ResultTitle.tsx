@@ -1,9 +1,13 @@
 import {HStack, Heading, Text} from '@chakra-ui/react';
 import {useSelectedStoreName} from '../hooks';
 
-export default function ResultTitle() {
+export default function ResultTitle({
+	store,
+}: {
+	store: string;
+}) {
 
-	const storeName = useSelectedStoreName();
+	const storeName = useSelectedStoreName(store);
 
 
 	return (

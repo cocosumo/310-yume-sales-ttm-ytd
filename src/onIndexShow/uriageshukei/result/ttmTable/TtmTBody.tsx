@@ -3,14 +3,18 @@ import {type FormType} from 'onIndexShow/uriageshukei/formSettings';
 import {useTTMData, useTypedWatch} from 'onIndexShow/uriageshukei/hooks';
 import CustomTBody from '../common/CustomTBody';
 
-export const TtmTBody = () => {
+export const TtmTBody = ({
+	store,
+}: {
+	store: string;
+}) => {
 	const year = useTypedWatch({
 		name: 'year',
 	}) as FormType['year'];
 
 	const showYears = [year - 1, year];
 
-	const data = useTTMData();
+	const data = useTTMData({store});
 
 	return (
 		<CustomTBody>

@@ -1,29 +1,25 @@
-import {HStack, VStack} from '@chakra-ui/react';
-import InputTable from './inputTable/InputTable';
-import ResultTitle from './ResultTitle';
-import TtmTable from './ttmTable/TtmTable';
-import YtdTable from './ytdTable/YtdTable';
-import TtmChart from './ttmChart/TtmChart';
-import YtdChart from './ytdChart/YtdChart';
+import {VStack} from '@chakra-ui/react';
+import SingleResult from './SingleResult';
+import {useTypedWatch} from '../hooks';
+import {type FormType} from '../formSettings';
 
 export default function Result() {
+	const store = useTypedWatch({
+		name: 'store',
+	}) as FormType['store'];
+	
 	return (
 		<VStack
-			alignItems={'flex-start'}
-			px={4}
-			py={4}
-			spacing={8}
 			id={'printable'}
-			width={'100%'}
+			sx={{
+				'@media print': {
+					width: '100%',
+					pageBreakAfter: 'always',
+					pageBreakInside: 'avoid',
+				},
+			}}
 		>
-			<ResultTitle />
-			<InputTable />
-			<TtmTable />
-			<YtdTable />
-			<HStack justifyContent={'space-between'} width={'100%'}>
-				<TtmChart />
-				<YtdChart />
-			</HStack>
+			<SingleResult store={store}/>
 		</VStack>
 	);
 }

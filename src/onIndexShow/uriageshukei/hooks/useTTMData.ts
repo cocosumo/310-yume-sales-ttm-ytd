@@ -7,14 +7,18 @@ import {useMonths} from './useMonths';
 export type TTMDataMonth = Record<number, number>;
 export type TTMDataResult = Record<number, TTMDataMonth>;
 
-export const useTTMData = () => {
+export const useTTMData = ({
+	store,
+}: {
+	store: string;
+}) => {
 	const months = useMonths();
 	
 	const selectedFiscalYear = useTypedWatch({
 		name: 'year',
 	}) as FormType['year'];
 
-	const {data} = useParsedSalesRecords();
+	const {data} = useParsedSalesRecords({store});
 	
 
 	const ttmData: TTMDataResult = useMemo(() => {

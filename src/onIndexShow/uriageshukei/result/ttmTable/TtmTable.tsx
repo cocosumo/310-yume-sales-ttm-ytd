@@ -6,7 +6,11 @@ import {TtmTHead} from './TtmTHead';
 import {TtmTBody} from './TtmTBody';
 
 
-export default function TtmTable() {
+export default function TtmTable({
+	store,
+}: {
+	store: string;
+}) {
 
    
 	return (
@@ -26,7 +30,7 @@ export default function TtmTable() {
 				layout={'fixed'}			
 			>
 				<TtmTHead/>
-				<TtmTBody/>
+				<TtmTBody store={store}/>
 			</Table>
 		</TableContainer>
 	);
