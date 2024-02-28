@@ -10,13 +10,6 @@ export default function Result() {
 	return (
 		<VStack
 			id={'printable'}
-			sx={{
-				'@media print': {
-					width: '100%',
-					pageBreakAfter: 'always',
-					pageBreakInside: 'avoid',
-				},
-			}}
 		>
 			{
 				storesToDisplay.map((store) => (

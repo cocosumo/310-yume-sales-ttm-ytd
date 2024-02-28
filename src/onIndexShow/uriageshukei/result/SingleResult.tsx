@@ -17,8 +17,15 @@ export default function SingleResult({
 			alignItems={'flex-start'}
 			px={4}
 			py={4}
-			spacing={8}
+			spacing={4}
 			width={'100%'}
+			sx={{
+				'@media print': {
+					width: '100%',
+					pageBreakAfter: 'always',
+					pageBreakInside: 'avoid',
+				},
+			}}
 		>
 			<ResultTitle store={store}/>
 			<InputTable store={store} />

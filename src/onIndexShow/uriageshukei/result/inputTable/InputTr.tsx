@@ -2,7 +2,8 @@ import {HStack, Td, Text, Tr} from '@chakra-ui/react';
 import {getBatch} from 'helpers/getBatch';
 import {useMonths} from '../../hooks/useMonths';
 import InputEditable from './InputEditable';
-import {type ParsedYearRecData} from 'onIndexShow/uriageshukei/hooks';
+import {useTypedWatch, type ParsedYearRecData} from 'onIndexShow/uriageshukei/hooks';
+import {type FormType} from 'onIndexShow/uriageshukei/formSettings';
 
 export default function InputTr({
 	year,
@@ -18,6 +19,10 @@ export default function InputTr({
 	data?: ParsedYearRecData;
 	storeUuid: string | undefined;
 }) {
+	const editMode = useTypedWatch({
+		name: 'editMode',	
+	}) as FormType['editMode'];
+
 	const batch = getBatch(year); 
 	const months = useMonths();
 
@@ -39,7 +44,7 @@ export default function InputTr({
 				</HStack>
 			</Td>
 
-			{!storeUuid && months.map((month) => {
+			{(!storeUuid || !editMode) && months.map((month) => {
 				let value: string | number = data.data[month] || '';
 
 				if (typeof value === 'number' && value !== 0) {
@@ -60,7 +65,7 @@ export default function InputTr({
 			})}
 
 			{
-				storeUuid && months.map((month) => (
+				storeUuid && editMode && months.map((month) => (
 					<Td key={month} isNumeric>
 
 						<InputEditable 

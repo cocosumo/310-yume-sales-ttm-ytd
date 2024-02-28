@@ -5,6 +5,7 @@ import {getFiscalYear} from 'helpers/getFiscalYear';
 export const formSchema = z.object({
 	year: z.coerce.number(),
 	store: z.string(),
+	editMode: z.boolean(),
 });
 
 
@@ -16,6 +17,7 @@ export type FormType = z.infer<typeof formSchema>;
 export const formDefault: FormType = {
 	year: getFiscalYear(),
 	store: '',
+	editMode: false,
 };
 
 /**
@@ -23,7 +25,7 @@ export const formDefault: FormType = {
  * 
  * @returns default values for the form
  */
-export const getFormDefault = () => {
+export const getFormDefault = (): FormType => {
 	const params = new URLSearchParams(window.location.search);
 	// Use qs to parse query string
 	const query = qs.parse(params.toString()) as unknown as Partial<FormType>;
@@ -31,5 +33,6 @@ export const getFormDefault = () => {
 	return {
 		year: query?.year ?? formDefault.year,
 		store: query?.store ?? formDefault.store,
+		editMode: formDefault.editMode,
 	};
 };

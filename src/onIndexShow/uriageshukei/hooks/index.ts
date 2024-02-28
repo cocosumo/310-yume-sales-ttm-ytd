@@ -1,3 +1,4 @@
+export * from './EditButton';
 export * from './useDisplayYears';
 export * from './useMonths';
 export * from './useParsedSalesRecords';
