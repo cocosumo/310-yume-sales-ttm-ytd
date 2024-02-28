@@ -12,9 +12,9 @@ export default function Result() {
 			id={'printable'}
 		>
 			{
-				storesToDisplay.map((store) => (
+				storesToDisplay.map((store, i) => (
 					<SingleResult 
-						key={store} 
+						key={i} 
 						store={store} 
 					/>
 				))
