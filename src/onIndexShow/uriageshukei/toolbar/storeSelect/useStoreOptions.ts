@@ -1,20 +1,9 @@
 import {useStores} from 'hooks/useStores';
-import {useMemo} from 'react';
+import {useCallback} from 'react';
 
-export const useStoreOptions = () => {
-	const {data, ...others} = useStores();
-
-	const options = useMemo(
-		() => data?.map((store) => ({
-			recordId: store.$id.value,
-			uuid: store.uuid.value,
-			label: store.storeNameShort.value,
-		})),
-		[data],
-	);
-
-	return {
-		data: options,
-		...others,
-	};
-};
+export const useStoreOptions = () => useStores({
+	select: useCallback((data) => data?.map((store) => ({
+		recordId: store.$id.value,
+		label: store.storeNameShort.value,
+	})), []), 
+});

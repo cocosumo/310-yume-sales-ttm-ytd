@@ -1,13 +1,12 @@
 import {VStack} from '@chakra-ui/react';
 import SingleResult from './SingleResult';
-import {useTypedWatch} from '../hooks';
-import {type FormType} from '../formSettings';
+
+import {useStoresToDisplay} from 'hooks/useStoresToDisplay';
 
 export default function Result() {
-	const store = useTypedWatch({
-		name: 'store',
-	}) as FormType['store'];
 	
+	const storesToDisplay = useStoresToDisplay();
+
 	return (
 		<VStack
 			id={'printable'}
@@ -19,8 +18,15 @@ export default function Result() {
 				},
 			}}
 		>
-			<SingleResult store={store}/>
-			
+			{
+				storesToDisplay.map((store) => (
+					<SingleResult 
+						key={store} 
+						store={store} 
+					/>
+				))
+			}
+		
 		</VStack>
 	);
 }

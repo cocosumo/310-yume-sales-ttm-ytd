@@ -6,7 +6,11 @@ import {YtdTHead} from './YtdTHead';
 import {YtdTBody} from './YtdTBody';
 
 
-export default function YtdTable() {
+export default function YtdTable({
+	store,
+}: {
+	store: string;
+}) {
 
    
 	return (
@@ -25,8 +29,8 @@ export default function YtdTable() {
 				}}
 				layout={'fixed'}
 			>
-				<YtdTHead/>
-				<YtdTBody/>
+				<YtdTHead />
+				<YtdTBody store={store} />
 			</Table>
 		</TableContainer>
 	);

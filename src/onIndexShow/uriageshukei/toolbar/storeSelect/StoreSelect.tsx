@@ -33,8 +33,9 @@ export default function StoreSelect() {
 						variant='filled'
 					>
 						{data?.map((store) => (
-							<option key={store.recordId} value={store.recordId}>{store.label}</option>
+							<option key={store.label} value={store.recordId}>{store.label}</option>
 						))}
+						<option value={'custom-all'}>全店舗個別表示</option>
 					</Select>
 
 				</FormControl>
