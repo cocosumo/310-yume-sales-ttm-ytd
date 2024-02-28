@@ -1,5 +1,5 @@
 import {Controller} from 'react-hook-form';
-import {useTypedForm} from './useTypedRHF';
+import {useTypedForm} from '../../hooks/useTypedRHF';
 import {Button} from '@chakra-ui/react';
 import {FaRegEdit} from 'react-icons/fa';
 import {FaCheck} from 'react-icons/fa';

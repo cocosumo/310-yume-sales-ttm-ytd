@@ -13,8 +13,10 @@ export const useStoresToDisplay = () => {
 	const resolveStores = useMemo(() => {
 		const isCustom = selectedStoreOption.includes('custom');
 
+		const customStoreLabel = selectedStoreOption.slice(selectedStoreOption.indexOf('-') + 1);
+
 		if (isCustom && storeOptions) {
-			return storeOptions.map((store) => store.recordId);
+			if (customStoreLabel === 'all') return storeOptions.map((store) => store.recordId);
 		}
  
 		return [selectedStoreOption];

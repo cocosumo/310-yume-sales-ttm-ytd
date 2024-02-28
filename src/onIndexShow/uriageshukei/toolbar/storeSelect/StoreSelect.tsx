@@ -1,6 +1,6 @@
 import {FormControl, FormLabel, Select} from '@chakra-ui/react';
 import {useStoreOptions} from './useStoreOptions';
-import {useTypedForm} from 'onIndexShow/uriageshukei/hooks';
+import {useCustomStoreOptions, useTypedForm} from 'onIndexShow/uriageshukei/hooks';
 import {Controller} from 'react-hook-form';
 
 export default function StoreSelect() {
@@ -8,6 +8,7 @@ export default function StoreSelect() {
 	const {control} = useTypedForm();
 
 	const {data} = useStoreOptions();
+	const {data: customStoreOptions} = useCustomStoreOptions();
 
 	return (
 		<Controller 
@@ -36,6 +37,10 @@ export default function StoreSelect() {
 							<option key={store.label} value={store.recordId}>{store.label}</option>
 						))}
 						<option value={'custom-all'}>全店舗個別表示</option>
+
+						{customStoreOptions?.map((store) => (
+							<option key={store.label} value={`custom-${store.label}`}>{store.label}</option>
+						))}
 					</Select>
 
 				</FormControl>

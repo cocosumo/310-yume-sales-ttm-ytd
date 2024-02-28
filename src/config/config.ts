@@ -4,4 +4,5 @@ export const prodAppId = 310;
 export const config = {
 	appId: kintone?.app?.getId() ?? devAppId,
 	storeAppId: 19,
+	settingsAppId: 82,
 };

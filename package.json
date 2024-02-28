@@ -6,6 +6,7 @@
   "scripts": {
     "dtsgen": "dotenv -- kintone-dts-gen --app-id 311 --namespace YumeSales -o types/yume_sales.d.ts",
     "dtsgen:stores": "dotenv -- kintone-dts-gen --app-id 19 --namespace Stores -o types/stores.d.ts",
+    "dtsgen:settings": "dotenv -- kintone-dts-gen --app-id 82 --namespace Settings -o types/settings.d.ts",
     "dev": "esbuild src/index.ts --bundle --define:process.env.NODE_ENV='development' --outfile=dist/index.js  --watch",
     "build": "esbuild src/index.ts --bundle --minify --define:process.env.NODE_ENV='production' --outfile=dist/index.js",
     "upload:local": "dotenv -- npx kintone-customize-uploader dest/customize-manifest-local.json",

@@ -31,7 +31,7 @@ export default function SingleResult({
 			<InputTable store={store} />
 			<TtmTable store={store}/>
 			<YtdTable store={store}/>
-			<HStack justifyContent={'space-between'} width={'100%'}>
+			<HStack width={'100%'}>
 				<TtmChart store={store} />
 				<YtdChart store={store} />
 			</HStack>

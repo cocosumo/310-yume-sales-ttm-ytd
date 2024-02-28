@@ -7,6 +7,7 @@ export const kintoneClient = new KintoneRestAPIClient({
 		apiToken: [
 			process.env.KINTONE_API_TOKEN,
 			process.env.KINTONE_API_TOKEN_STORES,
+			process.env.KINTONE_API_TOKEN_SETTINGS,
 		],
 	},
 });

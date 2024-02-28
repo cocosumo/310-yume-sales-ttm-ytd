@@ -1,4 +1,4 @@
-export * from './EditButton';
+export * from './useCustomStoreOptions';
 export * from './useDisplayYears';
 export * from './useMonths';
 export * from './useParsedSalesRecords';
@@ -6,6 +6,7 @@ export * from './useSalesRecords';
 export * from './useSaveSales';
 export * from './useSaveToQueryParams';
 export * from './useSelectedStoreName';
+export * from './useStoresToDisplay';
 export * from './useStoreUuidByRecId';
 export * from './useTTMData';
 export * from './useTypedRHF';

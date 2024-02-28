@@ -1,7 +1,7 @@
 import {VStack} from '@chakra-ui/react';
 import SingleResult from './SingleResult';
 
-import {useStoresToDisplay} from 'hooks/useStoresToDisplay';
+import {useStoresToDisplay} from 'onIndexShow/uriageshukei/hooks/useStoresToDisplay';
 
 export default function Result() {
 	

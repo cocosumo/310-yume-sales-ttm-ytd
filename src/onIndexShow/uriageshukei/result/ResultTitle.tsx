@@ -1,6 +1,6 @@
 import {HStack, Heading, Text} from '@chakra-ui/react';
 import {useSelectedStoreName} from '../hooks';
-import EditButton from '../hooks/EditButton';
+import EditButton from './common/EditButton';
 
 export default function ResultTitle({
 	store,

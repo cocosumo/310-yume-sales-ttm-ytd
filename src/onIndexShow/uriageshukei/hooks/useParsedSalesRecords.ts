@@ -1,6 +1,7 @@
 import {getFiscalYear} from 'helpers/getFiscalYear';
 import {useSalesRecords} from './useSalesRecords';
 import {useCallback} from 'react';
+import {useCustomStoreOptions} from './useCustomStoreOptions';
 import {useStoreUuidByRecId} from './useStoreUuidByRecId';
 
 
@@ -20,18 +21,21 @@ export const useParsedSalesRecords = ({
 	store: string;
 }) => {
 
-	const {data: storeUuid} = useStoreUuidByRecId({
-		store,
-	});
 
-	
+	const {data: customStoreOptions} = useCustomStoreOptions();
+	const {data: storeUuid} = useStoreUuidByRecId({store});
+
 	return useSalesRecords<ParsedSalesRecords>({
 		select: useCallback((data) => {
-			console.log('data', data);
+			const isCustom = store.includes('custom');
+			const customStoreLabel = store.slice(store.indexOf('-') + 1);
+			const selectedCustomStoreOption = customStoreOptions?.find((option) => option.label === customStoreLabel);
+			
 			return data
 				.reduce<ParsedSalesRecords>((acc, cur) => {
-				if (!storeUuid || cur.storeUuid.value === storeUuid) {
-					console.log('cur', cur.storeUuid.value,  storeUuid );
+				if (!store
+				|| cur.storeUuid.value === storeUuid
+				|| (isCustom && (!selectedCustomStoreOption?.data.length || selectedCustomStoreOption?.data.includes(cur.storeUuid.value)))) {
 
 					const [year, month] = cur.salesDate.value.split('-').map(Number);
 		
@@ -52,6 +56,6 @@ export const useParsedSalesRecords = ({
 
 				return acc;
 			}, {});
-		}, [storeUuid]),
+		}, [store, customStoreOptions]),
 	});
 };
