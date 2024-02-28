@@ -7,14 +7,18 @@ import {useTypedWatch} from './useTypedRHF';
 export type YTDDataMonth = Record<number, number>;
 export type YTDDataResult = Record<number, YTDDataMonth>;
 
-export const useYTDData = () => {
+export const useYTDData = ({
+	store,
+}: {
+	store: string;
+}) => {
 	const months = useMonths();
 	
 	const selectedFiscalYear = useTypedWatch({
 		name: 'year',
 	}) as FormType['year'];
 
-	const {data} = useParsedSalesRecords();
+	const {data} = useParsedSalesRecords({store});
 
 	const ytdData = useMemo(() => {
 		if (!data || !selectedFiscalYear) return {};

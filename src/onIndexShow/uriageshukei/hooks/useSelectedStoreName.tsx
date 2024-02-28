@@ -1,12 +1,8 @@
 import {useStores} from 'hooks/useStores';
-import {useTypedWatch} from './useTypedRHF';
 import {useMemo} from 'react';
 
-export const useSelectedStoreName = () => {
+export const useSelectedStoreName = (storeId: string) => {
 	const {data} = useStores();
-	const storeId = useTypedWatch({
-		name: 'store',
-	});
 
 	const storeName = useMemo(
 		() => data?.find((store) => store.$id.value === storeId)?.店舗名?.value, 

@@ -14,8 +14,12 @@ type YTDCChartSeries = Array<{
 	data: YTDChartSeriesRow[];
 }>;
 
-export default function YtdChart() {
-	const ytdData = useYTDData();
+export default function YtdChart({
+	store,
+}: {
+	store: string;
+}) {
+	const ytdData = useYTDData({store});
 	const months = useMonths();
 
 	const years = useMemo(

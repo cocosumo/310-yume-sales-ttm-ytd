@@ -5,7 +5,11 @@ import {
 import {InputTHead} from './InputTHead';
 import InputTBody from './InputTBody';
 
-export default function InputTable() {
+export default function InputTable({
+	store,
+}: {
+	store: string;
+}) {
 	return (
 		<TableContainer>
 			<Table 
@@ -23,7 +27,7 @@ export default function InputTable() {
 				layout={'fixed'}
 			>
 				<InputTHead />
-				<InputTBody />
+				<InputTBody store={store}/>
 			</Table>
 		</TableContainer>
 	);

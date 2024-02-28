@@ -4,7 +4,6 @@ import {useTypedWatch} from './useTypedRHF';
 import {useQuery} from '@tanstack/react-query';
 import {type TyumeSales} from 'types';
 import {getSalesRecords} from 'api/getSalesRecords';
-import {useStoreUuidByRecId} from 'onIndexShow/uriageshukei/hooks/useStoreUuidByRecId';
 
 
 export const useSalesRecords = <T = unknown>({
@@ -21,12 +20,12 @@ export const useSalesRecords = <T = unknown>({
 	}) as [
 		FormType['year'],
 	];
-	const {data: storeUuid} = useStoreUuidByRecId();
+
 	const range = getFiscalYearRange(Number(year), 2);
 
 	return useQuery({
-		queryKey: ['salesRecords', {...range, storeUuid}],
-		queryFn: async () => getSalesRecords({...range, storeUuid}),
+		queryKey: ['salesRecords', {...range}],
+		queryFn: async () => getSalesRecords({...range}),
 		select,
 	});
    

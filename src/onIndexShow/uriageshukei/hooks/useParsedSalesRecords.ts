@@ -1,6 +1,7 @@
 import {getFiscalYear} from 'helpers/getFiscalYear';
 import {useSalesRecords} from './useSalesRecords';
 import {useCallback} from 'react';
+import {useStoreUuidByRecId} from './useStoreUuidByRecId';
 
 
 export type ParsedMonthRecord = Record<number, number>;
@@ -13,25 +14,42 @@ export type ParsedYearRecData = {
 export type ParsedSalesRecords = Record<number, ParsedYearRecData>;
 
 
-export const useParsedSalesRecords = () => useSalesRecords<ParsedSalesRecords>({
-	select: useCallback((data) => data
-		.reduce<ParsedSalesRecords>((acc, cur) => {
-		const [year, month] = cur.salesDate.value.split('-').map(Number);
-		
-		const fiscalYear = getFiscalYear(new Date(year, month - 1, 1));
+export const useParsedSalesRecords = ({
+	store,
+}: {	
+	store: string;
+}) => {
+
+	const {data: storeUuid} = useStoreUuidByRecId({
+		store,
+	});
 	
-		const amount = Number(cur.saleAmount.value);
+	return useSalesRecords<ParsedSalesRecords>({
+		select: useCallback((data) => {
+			console.log('data', data);
+			return data
+				.reduce<ParsedSalesRecords>((acc, cur) => {
+			
+				if (storeUuid && cur.storeUuid.value !== storeUuid) return acc; 
 
-		acc[fiscalYear] ||= {
-			data: {
+				const [year, month] = cur.salesDate.value.split('-').map(Number);
+		
+				const fiscalYear = getFiscalYear(new Date(year, month - 1, 1));
+	
+				const amount = Number(cur.saleAmount.value);
 
-			},
-			total: 0,
-		};
+				acc[fiscalYear] ||= {
+					data: {
 
-		acc[fiscalYear].data[month] = Number(acc[fiscalYear].data[month] ?? 0) + amount;
-		acc[fiscalYear].total += Number(amount);
+					},
+					total: 0,
+				};
 
-		return acc;
-	}, {}), []),
-});
+				acc[fiscalYear].data[month] = Number(acc[fiscalYear].data[month] ?? 0) + amount;
+				acc[fiscalYear].total += Number(amount);
+
+				return acc;
+			}, {});
+		}, [storeUuid]),
+	});
+};

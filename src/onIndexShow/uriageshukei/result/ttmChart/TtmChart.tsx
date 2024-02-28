@@ -14,8 +14,12 @@ type TTMChartSeries = Array<{
 	data: TTMChartSeriesRow[];
 }>;
 
-export default function TtmChart() {
-	const ttmData = useTTMData();
+export default function TtmChart({
+	store,
+}: {
+	store: string;
+}) {
+	const ttmData = useTTMData({store});
 	const months = useMonths();
 
 	const years = useMemo(

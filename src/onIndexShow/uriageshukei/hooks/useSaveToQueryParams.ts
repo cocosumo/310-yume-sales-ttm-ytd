@@ -13,7 +13,6 @@ export const useSaveToQueryParams = (formMethods: UseFormReturn<FormType>) => {
 
 	const onSubmit = (data: FormType) => {
 		const queryStr = qs.stringify(data);
-		console.log('queryStr', queryStr);
 
 		const url = new URL(window.location.href);
 		url.search = queryStr;
