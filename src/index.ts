@@ -1,4 +1,4 @@
-import onIndexShow from './onIndexShow';
+import onIndexShow from './onIndexShow/onIndexShow';
 
 (() => {
 

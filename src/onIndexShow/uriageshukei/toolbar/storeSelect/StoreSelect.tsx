@@ -5,7 +5,7 @@ import {Controller} from 'react-hook-form';
 
 export default function StoreSelect() {
 
-	const {control} = useTypedForm();
+	const {control, setValue} = useTypedForm();
 
 	const {data} = useStoreOptions();
 	const {data: customStoreOptions} = useCustomStoreOptions();
@@ -32,6 +32,14 @@ export default function StoreSelect() {
 						{...field} 
 						placeholder='全店舗' 
 						variant='filled'
+						onChange={(e) => {
+							const newValue = e.target.value;
+							if (newValue.includes('custom') || !newValue) {
+								setValue('editMode', false);
+							}
+
+							field.onChange(e);
+						}}
 					>
 						{data?.map((store) => (
 							<option key={store.label} value={store.recordId}>{store.label}</option>

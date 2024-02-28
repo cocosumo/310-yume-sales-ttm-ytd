@@ -12,6 +12,7 @@ export default function onIndexShow(event: EventParams) {
 
 	switch (viewId) {
 		case 6345418:
+		case 6345478: // 本番
 			renderUriageShukei();
 			break;
 		default:
