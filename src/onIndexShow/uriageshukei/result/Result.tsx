@@ -20,6 +20,7 @@ export default function Result() {
 			}}
 		>
 			<SingleResult store={store}/>
+			
 		</VStack>
 	);
 }

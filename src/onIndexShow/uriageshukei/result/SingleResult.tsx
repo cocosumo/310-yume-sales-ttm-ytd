@@ -5,17 +5,12 @@ import TtmTable from './ttmTable/TtmTable';
 import YtdTable from './ytdTable/YtdTable';
 import TtmChart from './ttmChart/TtmChart';
 import YtdChart from './ytdChart/YtdChart';
-import {useTypedWatch} from '../hooks';
-import {type FormType} from '../formSettings';
 
 export default function SingleResult({
 	store,
 }: {
 	store: string;
 }) {
-	const year = useTypedWatch({
-		name: 'year',
-	}) as FormType['year'];
 
 	return (
 		<VStack
