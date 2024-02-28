@@ -65,9 +65,16 @@ export default function TtmChart({
 				<XAxis dataKey="monthKey" tick={{fontSize: 10}} tickCount={12} allowDuplicatedCategory={false}/>
 				<YAxis 
 					dataKey="amount"
-					domain={['auto', 'auto']}
+					domain={[
+						'auto', 
+						'auto',
+					]}
 				 	width={60} 
-					tick={{fontSize: 10}}/>
+					tick={{fontSize: 8}}
+					tickFormatter={(value: number) => value.toLocaleString()}
+
+				/>
+					
 				<Tooltip 
 					formatter={(value: number) => value.toLocaleString()}
 				/>

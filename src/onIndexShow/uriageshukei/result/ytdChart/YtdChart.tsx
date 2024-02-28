@@ -66,7 +66,13 @@ export default function YtdChart({
 					/>
 				))}
 				<XAxis dataKey="monthKey" tick={{fontSize: 10}} tickCount={12} allowDuplicatedCategory={false}/>
-				<YAxis dataKey="amount" width={60} tickCount={8} tick={{fontSize: 10}}/>
+				<YAxis 
+					dataKey="amount"
+					width={60} 
+					tickCount={8}
+					tick={{fontSize: 8}}
+					tickFormatter={(value: number) => value.toLocaleString()}
+				/>
 				<Tooltip 
 					formatter={(value: number) => value.toLocaleString()}
 				/>
