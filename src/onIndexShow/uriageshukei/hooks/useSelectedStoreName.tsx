@@ -16,11 +16,12 @@ export const useSelectedStoreName = (storeId: string) => {
 		[data, storeId],
 	);
 
-	if (selectedStore.includes('all')) {
-		return '全店舗';
+	if (selectedStore === 'custom-all') {
+		return storeName;
 	}
 
 	if (selectedStore.includes('custom')) {
+
 		const customStoreLabel = selectedStore.slice(selectedStore.indexOf('-') + 1);
 		const customStoreOption = customStoreOptions?.find((store) => store.label === customStoreLabel);
 		if (!customStoreOption) return `${customStoreLabel}店舗集計`;
