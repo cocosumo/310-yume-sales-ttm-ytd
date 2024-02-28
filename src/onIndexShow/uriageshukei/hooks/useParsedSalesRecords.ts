@@ -25,31 +25,28 @@ export const useParsedSalesRecords = ({
 	});
 	
 	return useSalesRecords<ParsedSalesRecords>({
-		select: useCallback((data) => {
-			console.log('data', data);
-			return data
-				.reduce<ParsedSalesRecords>((acc, cur) => {
+		select: useCallback((data) => data
+			.reduce<ParsedSalesRecords>((acc, cur) => {
 			
-				if (storeUuid && cur.storeUuid.value !== storeUuid) return acc; 
+			if (storeUuid && cur.storeUuid.value !== storeUuid) return acc; 
 
-				const [year, month] = cur.salesDate.value.split('-').map(Number);
+			const [year, month] = cur.salesDate.value.split('-').map(Number);
 		
-				const fiscalYear = getFiscalYear(new Date(year, month - 1, 1));
+			const fiscalYear = getFiscalYear(new Date(year, month - 1, 1));
 	
-				const amount = Number(cur.saleAmount.value);
+			const amount = Number(cur.saleAmount.value);
 
-				acc[fiscalYear] ||= {
-					data: {
+			acc[fiscalYear] ||= {
+				data: {
 
-					},
-					total: 0,
-				};
+				},
+				total: 0,
+			};
 
-				acc[fiscalYear].data[month] = Number(acc[fiscalYear].data[month] ?? 0) + amount;
-				acc[fiscalYear].total += Number(amount);
+			acc[fiscalYear].data[month] = Number(acc[fiscalYear].data[month] ?? 0) + amount;
+			acc[fiscalYear].total += Number(amount);
 
-				return acc;
-			}, {});
-		}, [storeUuid]),
+			return acc;
+		}, {}), [storeUuid]),
 	});
 };
