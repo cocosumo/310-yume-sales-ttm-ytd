@@ -66,7 +66,7 @@ export default function InputTr({
 
 			{
 				storeUuid && editMode && months.map((month) => (
-					<Td key={month} isNumeric>
+					<Td key={month}>
 
 						<InputEditable 
 							year={year} 

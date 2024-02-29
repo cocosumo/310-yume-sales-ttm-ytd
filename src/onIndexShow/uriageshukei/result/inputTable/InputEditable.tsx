@@ -1,14 +1,15 @@
 
 
 import {Input} from '@chakra-ui/react';
-import useEnterKeyAsTab from 'hooks/useEnterKeyAsTab';
+import {sanitizeNumericString} from 'helpers/sanitizeNumericString';
+import useInputKeys from 'hooks/useInputKeys';
 import {useSaveSales} from 'onIndexShow/uriageshukei/hooks';
-import {useEffect, useRef, useState} from 'react';
+import {useRef, useState} from 'react';
 
 export default function InputEditable({
 	year,
 	month,
-	data = 0,
+	data = '',
 	storeUuid,
 }: {
 	year: number;
@@ -19,34 +20,26 @@ export default function InputEditable({
 	
 	const [hasFocus, setHasFocus] = useState(false);  
 
-	const [value, setValue] = useState<number | string>(data);
-	const inputRef = useEnterKeyAsTab();
+	const [value, setValue] = useState<number | string | undefined>(data);
+
+	const inputRef = useInputKeys();
+
 	const {mutate} = useSaveSales();
-	const originalValueRef = useRef(value);
+	const originalValueRef = useRef(data);
 
-	useEffect(() => {
-
-		setValue(data);
-	}, [data]);
-
-	let displayValue: number | string = '';
-
-	if (!value) {
-		displayValue = '';
-	} else if (hasFocus) {
-		displayValue = value;
-	} else {
-		displayValue = Number(value).toLocaleString();
-	}
 
 	return (
 		<Input 
-			bgColor={!hasFocus && (displayValue === '' || displayValue === 0) ? 'gray.100' : ''}
+			bgColor={!hasFocus && (value === '' || value === undefined) ? 'gray.100' : ''}
 			ref={inputRef}
-			onFocus={() => {
-				originalValueRef.current = value;
+			onFocus={(e) => {
+
+				originalValueRef.current = e.target.value.replace(/,/g, '');
+				e.target.value = originalValueRef.current;
+				e.target.select();
 				setHasFocus(true); 
 			}}
+			defaultValue={data ? Number(data).toLocaleString() : ''}
 			onBlur={(e) => {
 				if (!storeUuid) {
 					return;
@@ -54,13 +47,26 @@ export default function InputEditable({
 
 				setHasFocus(false); 
 
-				if (value !== originalValueRef.current) {
+				if (e.target.value === originalValueRef.current) {
+					e.target.value = originalValueRef.current 
+						? Number(originalValueRef.current).toLocaleString() 
+						: String(originalValueRef.current);
+					
+				} else {
+					const cleanNumericStr = sanitizeNumericString(e.target.value);
 					mutate({
 						fiscalYear: year,
 						month,
-						newSalesAmount: e.target.value,
+						newSalesAmount: cleanNumericStr,
 						storeUuid,
 					});
+
+					
+					e.target.value = cleanNumericStr 
+						? Number(cleanNumericStr).toLocaleString() 
+						: String(cleanNumericStr);
+					
+					originalValueRef.current = cleanNumericStr;
 				}
 
 			}}
@@ -75,19 +81,19 @@ export default function InputEditable({
         || isNaN(parsedN)
 				) {
 					valueToSave = '';
-				} 
-
+				}
+ 
 				setValue(valueToSave);
-				// SaveNewValue(valueToSave);
 			}}
-
-			value={displayValue}
+			
+			placeholder={value ? Number(value).toLocaleString()  : '0'}
 			fontSize={'12px'}
 			textAlign={'right'}
+			
 			width={'80px'}
 			size={'sm'}
-			
 			px={1}
+			
 		/>
 
 	);

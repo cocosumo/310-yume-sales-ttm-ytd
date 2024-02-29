@@ -2,7 +2,7 @@ import {useRef, useEffect} from 'react';
 
 
 
-export default function useEnterKeyAsTab() {
+export default function useInputKeys() {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
