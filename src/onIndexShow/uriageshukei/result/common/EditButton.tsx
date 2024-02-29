@@ -1,9 +1,36 @@
 import {Controller} from 'react-hook-form';
 import {useTypedForm, useTypedWatch} from '../../hooks/useTypedRHF';
-import {Button, Tooltip} from '@chakra-ui/react';
+import {Button, Spinner, Tooltip} from '@chakra-ui/react';
 import {FaRegEdit} from 'react-icons/fa';
 import {FaCheck} from 'react-icons/fa';
 import {type FormType} from 'onIndexShow/uriageshukei/formSettings';
+import {useIsFetching} from '@tanstack/react-query';
+
+const EditButtonIcon = ({
+	isEditting,
+}: {
+	isEditting: boolean;
+}) => {
+	const isFetching = useIsFetching();
+
+	if (isFetching) return <Spinner />;
+
+	if (isEditting) return <FaCheck />;
+	return <FaRegEdit />;
+};
+
+const ButtonText = ({
+	isEditting,
+}: {
+	isEditting: boolean;
+}) => {
+	const isFetching = useIsFetching();
+
+	if (isFetching) return '通信中...';
+
+	if (isEditting) return '編集終了';
+	return '編集';
+};
 
 export default function EditButton() {
 	const selectedStore = useTypedWatch({
@@ -12,6 +39,7 @@ export default function EditButton() {
 
 	const isDisabled = !selectedStore || selectedStore.includes('custom');
 	const {control} = useTypedForm();
+
 
 	return (
 		<Controller
@@ -35,9 +63,9 @@ export default function EditButton() {
 						onClick={() => {
 							field.onChange(!field.value);
 						}}
-						leftIcon={field.value ? <FaCheck /> : <FaRegEdit />}
+						leftIcon={<EditButtonIcon isEditting={field.value} />}
 					>
-						{field.value ? '編集終了' : '編集'}
+						<ButtonText isEditting={field.value} />
 					</Button>
 				</Tooltip>
 			)}
