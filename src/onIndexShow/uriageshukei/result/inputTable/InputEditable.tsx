@@ -3,7 +3,7 @@
 import {Input} from '@chakra-ui/react';
 import useEnterKeyAsTab from 'hooks/useEnterKeyAsTab';
 import {useSaveSales} from 'onIndexShow/uriageshukei/hooks';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 export default function InputEditable({
 	year,
@@ -13,15 +13,16 @@ export default function InputEditable({
 }: {
 	year: number;
 	month: number;
-	data?: number;
+	data?: number | string;
 	storeUuid?: string;
 }) {
 	
 	const [hasFocus, setHasFocus] = useState(false);  
 
-	const [value, setValue] = useState<number | ''>(data);
+	const [value, setValue] = useState<number | string>(data);
 	const inputRef = useEnterKeyAsTab();
 	const {mutate} = useSaveSales();
+	const originalValueRef = useRef(value);
 
 	useEffect(() => {
 
@@ -30,49 +31,45 @@ export default function InputEditable({
 
 	let displayValue: number | string = '';
 
-	if (hasFocus) {
-		if (value !== 0) {
-			displayValue = value;
-		}
-	} else if (value === 0) {
+	if (!value) {
 		displayValue = '';
+	} else if (hasFocus) {
+		displayValue = value;
 	} else {
-		displayValue = value.toLocaleString();
-
+		displayValue = Number(value).toLocaleString();
 	}
-
 
 	return (
 		<Input 
-			bgColor={!hasFocus && displayValue === '' ? 'gray.100' : ''}
+			bgColor={!hasFocus && (displayValue === '' || displayValue === 0) ? 'gray.100' : ''}
 			ref={inputRef}
 			onFocus={() => {
+				originalValueRef.current = value;
 				setHasFocus(true); 
 			}}
-			onBlur={() => {
+			onBlur={(e) => {
 				if (!storeUuid) {
 					return;
 				}
 
 				setHasFocus(false); 
-				mutate({
-					fiscalYear: year,
-					month,
-					newSalesAmount: Number(value),
-					storeUuid,
-				});
+
+				if (value !== originalValueRef.current) {
+					mutate({
+						fiscalYear: year,
+						month,
+						newSalesAmount: e.target.value,
+						storeUuid,
+					});
+				}
+
 			}}
 			onChange={(e) => {
-				console.log('fire');
 				const newValue = e.target.value;
 
 				const parsedN = Number(newValue.replace(/,/g, ''));
 				let valueToSave: number | '' = parsedN;
 
-				if (isNaN(parsedN)) {
-					return;
-				}
-        
 				if (
 					newValue === ''
         || isNaN(parsedN)

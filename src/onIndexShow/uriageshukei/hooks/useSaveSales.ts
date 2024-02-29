@@ -8,7 +8,6 @@ export const useSaveSales = () => {
 	return useMutation({
 		mutationFn: saveSales,
 		async onSuccess() {
-			console.log('saved');
 			return queryClient.invalidateQueries({
 				queryKey: ['salesRecords'],
 

@@ -4,9 +4,10 @@ import StoreSelect from './storeSelect/StoreSelect';
 import YearSelect from './yearSelect/YearSelect';
 import PrintButton from './PrintButton';
 import EditButton from '../result/common/EditButton';
+import Loading from './Loading';
 
 export default function Toolbar() {
-
+		
 
 	return (
 		<ToolbarContainer>
@@ -15,6 +16,7 @@ export default function Toolbar() {
 				<StoreSelect />
 			</HStack>
 			<HStack>
+				<Loading />
 				<EditButton />
 				<PrintButton />
 			</HStack>

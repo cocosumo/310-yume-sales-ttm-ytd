@@ -45,10 +45,10 @@ export default function InputTr({
 			</Td>
 
 			{(!storeUuid || !editMode) && months.map((month) => {
-				let value: string | number = data.data[month] || '';
+				let value: string | number = data.data[month] ?? '';
 
-				if (typeof value === 'number' && value !== 0) {
-					value = value.toLocaleString();
+				if (value !==  '') {
+					value = Number(value).toLocaleString();
 				}
 
 				return (
@@ -71,7 +71,7 @@ export default function InputTr({
 						<InputEditable 
 							year={year} 
 							month={month}
-							data={data.data[month] || 0}
+							data={data.data[month]}
 							storeUuid={storeUuid}
 						/>
 					</Td>

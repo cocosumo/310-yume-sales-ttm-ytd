@@ -5,7 +5,7 @@ import {useCustomStoreOptions} from './useCustomStoreOptions';
 import {useStoreUuidByRecId} from './useStoreUuidByRecId';
 
 
-export type ParsedMonthRecord = Record<number, number>;
+export type ParsedMonthRecord = Record<number, number | string>;
 
 export type ParsedYearRecData = {
 	data: ParsedMonthRecord;
@@ -41,7 +41,7 @@ export const useParsedSalesRecords = ({
 		
 					const fiscalYear = getFiscalYear(new Date(year, month - 1, 1));
 		
-					const amount = Number(cur.saleAmount.value);
+					const amount = cur.saleAmount.value;
 	
 					acc[fiscalYear] ||= {
 						data: {
@@ -49,13 +49,15 @@ export const useParsedSalesRecords = ({
 						},
 						total: 0,
 					};
+
+					
 	
-					acc[fiscalYear].data[month] = Number(acc[fiscalYear].data[month] ?? 0) + amount;
+					acc[fiscalYear].data[month] = amount;
 					acc[fiscalYear].total += Number(amount);
 				} 
 
 				return acc;
 			}, {});
-		}, [store, customStoreOptions]),
+		}, [store, customStoreOptions, storeUuid]),
 	});
 };

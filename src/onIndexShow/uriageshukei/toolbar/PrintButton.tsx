@@ -23,7 +23,7 @@ export default function PrintButton() {
 
 	return (
 		<Tooltip
-			label={editMode ? '編集中は印刷できません' : ''}
+			label={editMode ? '印刷するには編集終了してください' : ''}
 		>
 			<Button 
 				onClick={() => {
