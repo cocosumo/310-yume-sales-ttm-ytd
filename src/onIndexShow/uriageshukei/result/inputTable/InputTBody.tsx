@@ -25,8 +25,6 @@ export default function InputTBody({
 		data = {},
 	} = useParsedSalesRecords({store});
 
-	console.log('data', data);
-
 	const {data: storeUuid} = useStoreUuidByRecId({
 		store,
 	});

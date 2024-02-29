@@ -15,7 +15,9 @@ type FiscalYearRange = {
  */
 export const getFiscalYearRange = (year: number, offset = 0): FiscalYearRange => {
 	const start = new Date(year - offset, fiscalYearStart - 1, 1);
-	const end = new Date(year + 1, fiscalYearStart - 2, 1);
+	const end = new Date(year + 2, fiscalYearStart, 1);
+
+	console.log('end', end);
 
 	return {
 		start: format(start, 'yyyy-MM-dd'),
