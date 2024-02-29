@@ -4,7 +4,7 @@ import {Input} from '@chakra-ui/react';
 import {sanitizeNumericString} from 'helpers/sanitizeNumericString';
 import useInputKeys from 'hooks/useInputKeys';
 import {useSaveSales} from 'onIndexShow/uriageshukei/hooks';
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 export default function InputEditable({
 	year,
@@ -24,11 +24,10 @@ export default function InputEditable({
 	const inputRef = useInputKeys();
 
 	const {mutate} = useSaveSales();
-	const originalValueRef = useRef(data);
 
 	useEffect(() => {
-		originalValueRef.current = data;
 		if (!inputRef.current) return;
+
 		inputRef.current.value = data ? Number(data).toLocaleString() : '';
 		setOriginalValue(data);
 	}, [data, inputRef]);
@@ -39,12 +38,10 @@ export default function InputEditable({
 			bgColor={!hasFocus && (originalValue === '' || originalValue === undefined) ? 'gray.100' : ''}
 			ref={inputRef}
 			onFocus={(e) => {
-
-				originalValueRef.current = e.target.value.replace(/,/g, '');
-				e.target.value = originalValueRef.current;
 				setHasFocus(true); 
-				e.target.select();
 
+				e.target.value = e.target.value.replace(/,/g, '');
+				e.target.select();
 			}}
 			defaultValue={data ? Number(data).toLocaleString() : ''}
 			onBlur={(e) => {
@@ -54,10 +51,10 @@ export default function InputEditable({
 
 				setHasFocus(false); 
 
-				if (e.target.value === originalValueRef.current) {
-					e.target.value = originalValueRef.current 
-						? Number(originalValueRef.current).toLocaleString() 
-						: String(originalValueRef.current);
+				if (e.target.value === originalValue) {
+					e.target.value = originalValue 
+						? Number(originalValue).toLocaleString() 
+						: String(originalValue);
 					
 				} else {
 					const cleanNumericStr = sanitizeNumericString(e.target.value);
@@ -73,12 +70,12 @@ export default function InputEditable({
 						? Number(cleanNumericStr).toLocaleString() 
 						: String(cleanNumericStr);
 					
-					originalValueRef.current = cleanNumericStr;
+					setOriginalValue(cleanNumericStr);
 				}
 
 			}}
 	
-			placeholder={inputRef.current ? Number(inputRef.current.value).toLocaleString() : '0'}
+			placeholder={originalValue ? Number(originalValue).toLocaleString() : ''}
 			fontSize={'12px'}
 			textAlign={'right'}
 			
