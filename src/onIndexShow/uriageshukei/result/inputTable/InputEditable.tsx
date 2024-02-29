@@ -4,7 +4,7 @@ import {Input} from '@chakra-ui/react';
 import {sanitizeNumericString} from 'helpers/sanitizeNumericString';
 import useInputKeys from 'hooks/useInputKeys';
 import {useSaveSales} from 'onIndexShow/uriageshukei/hooks';
-import {useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 export default function InputEditable({
 	year,
@@ -18,17 +18,25 @@ export default function InputEditable({
 	storeUuid?: string;
 }) {
 	
-	const [hasFocus, setHasFocus] = useState(false);  
+	const [hasFocus, setHasFocus] = useState(false); 
+	const [originalValue, setOriginalValue] = useState(data);
 
 	const inputRef = useInputKeys();
 
 	const {mutate} = useSaveSales();
 	const originalValueRef = useRef(data);
 
+	useEffect(() => {
+		originalValueRef.current = data;
+		if (!inputRef.current) return;
+		inputRef.current.value = data ? Number(data).toLocaleString() : '';
+		setOriginalValue(data);
+	}, [data, inputRef]);
+
 
 	return (
 		<Input 
-			bgColor={!hasFocus && (originalValueRef.current === '' || originalValueRef.current === undefined) ? 'gray.100' : ''}
+			bgColor={!hasFocus && (originalValue === '' || originalValue === undefined) ? 'gray.100' : ''}
 			ref={inputRef}
 			onFocus={(e) => {
 
@@ -70,7 +78,7 @@ export default function InputEditable({
 
 			}}
 	
-			placeholder={originalValueRef.current ? Number(originalValueRef.current).toLocaleString() : '0'}
+			placeholder={inputRef.current ? Number(inputRef.current.value).toLocaleString() : '0'}
 			fontSize={'12px'}
 			textAlign={'right'}
 			
