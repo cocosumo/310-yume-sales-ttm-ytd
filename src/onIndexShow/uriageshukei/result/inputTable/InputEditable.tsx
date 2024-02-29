@@ -20,8 +20,6 @@ export default function InputEditable({
 	
 	const [hasFocus, setHasFocus] = useState(false);  
 
-	const [value, setValue] = useState<number | string | undefined>(data);
-
 	const inputRef = useInputKeys();
 
 	const {mutate} = useSaveSales();
@@ -30,14 +28,15 @@ export default function InputEditable({
 
 	return (
 		<Input 
-			bgColor={!hasFocus && (value === '' || value === undefined) ? 'gray.100' : ''}
+			bgColor={!hasFocus && (originalValueRef.current === '' || originalValueRef.current === undefined) ? 'gray.100' : ''}
 			ref={inputRef}
 			onFocus={(e) => {
 
 				originalValueRef.current = e.target.value.replace(/,/g, '');
 				e.target.value = originalValueRef.current;
-				e.target.select();
 				setHasFocus(true); 
+				e.target.select();
+
 			}}
 			defaultValue={data ? Number(data).toLocaleString() : ''}
 			onBlur={(e) => {
@@ -70,23 +69,8 @@ export default function InputEditable({
 				}
 
 			}}
-			onChange={(e) => {
-				const newValue = e.target.value;
-
-				const parsedN = Number(newValue.replace(/,/g, ''));
-				let valueToSave: number | '' = parsedN;
-
-				if (
-					newValue === ''
-        || isNaN(parsedN)
-				) {
-					valueToSave = '';
-				}
- 
-				setValue(valueToSave);
-			}}
-			
-			placeholder={value ? Number(value).toLocaleString()  : '0'}
+	
+			placeholder={originalValueRef.current ? Number(originalValueRef.current).toLocaleString() : '0'}
 			fontSize={'12px'}
 			textAlign={'right'}
 			
