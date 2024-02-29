@@ -24,7 +24,7 @@ export const getSalesRecords = async ({
 	try {
 		const dateKey: TYumeSaleKey = 'salesDate';
 		const storeKey: TYumeSaleKey = 'storeUuid';
-		const fields: TYumeSaleKey[] = [dateKey, 'saleAmount', 'storeUuid', '$id']; 
+		const fields: TYumeSaleKey[] = [dateKey, 'saleAmount', 'storeUuid', 'storeName', '$id']; 
 
 		const condition = [
 			`${dateKey} >= "${start}"`,

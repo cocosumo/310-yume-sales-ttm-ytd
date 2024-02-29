@@ -33,6 +33,7 @@ module.exports = {
 				'*.tsx',
 			],
 			rules: {
+				"@typescript-eslint/prefer-nullish-coalescing": "off",
 				'@typescript-eslint/no-unsafe-call': 'off', // Kintone API has many unsafe calls
 				"@typescript-eslint/no-unsafe-assignment": "off", // Kintone API has many unsafe assignments
 				"@typescript-eslint/no-unsafe-return": "off", // Kintone API has many unsafe returns

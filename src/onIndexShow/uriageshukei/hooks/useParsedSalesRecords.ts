@@ -30,12 +30,17 @@ export const useParsedSalesRecords = ({
 			const isCustom = store.includes('custom');
 			const customStoreLabel = store.slice(store.indexOf('-') + 1);
 			const selectedCustomStoreOption = customStoreOptions?.find((option) => option.label === customStoreLabel);
+
+			// Console.log('selectedCustomStoreOption', customStoreOptions, selectedCustomStoreOption, customStoreLabel, store);
 			
 			return data
 				.reduce<ParsedSalesRecords>((acc, cur) => {
+
 				if (!store
-				|| cur.storeUuid.value === storeUuid
+				|| storeUuid && cur.storeUuid.value === storeUuid
 				|| (isCustom && (!selectedCustomStoreOption?.data.length || selectedCustomStoreOption?.data.includes(cur.storeUuid.value)))) {
+
+					console.log('CURR', cur.storeName.value, cur.salesDate.value, cur.saleAmount.value, selectedCustomStoreOption?.data.includes(cur.storeUuid.value));
 
 					const [year, month] = cur.salesDate.value.split('-').map(Number);
 		
@@ -50,9 +55,13 @@ export const useParsedSalesRecords = ({
 						total: 0,
 					};
 
+					if (acc[fiscalYear].data[month]) {
+						acc[fiscalYear].data[month] = Number(acc[fiscalYear].data[month]) + Number(amount);
+
+					} else {
+						acc[fiscalYear].data[month] = amount;
+					}
 					
-	
-					acc[fiscalYear].data[month] = amount;
 					acc[fiscalYear].total += Number(amount);
 				} 
 

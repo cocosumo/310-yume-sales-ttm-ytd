@@ -28,7 +28,7 @@ export const useTTMData = ({
 		for (let yearIdx = selectedFiscalYear; yearIdx > selectedFiscalYear - 2; yearIdx--) {
 			for (let m = 0; m < 12; m++) {
 				let sum = 0;
-				const currentMonthAmount = data[yearIdx]?.data?.[months[m]] ?? 0;
+				const currentMonthAmount = Number(data[yearIdx]?.data?.[months[m]] ?? 0);
 
 				if (!currentMonthAmount) {
 					continue;
