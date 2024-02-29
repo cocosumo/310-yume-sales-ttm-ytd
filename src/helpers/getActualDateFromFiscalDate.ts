@@ -7,7 +7,7 @@ export const getActualDateFromFiscalDate = ({
 	fiscalYear: number;
 	month: number;
 }) => {
-	const actualYear = month < fiscalYearStart 
+	const actualYear = month < Number(fiscalYearStart) 
 		? fiscalYear + 1  
 		: fiscalYear;
 

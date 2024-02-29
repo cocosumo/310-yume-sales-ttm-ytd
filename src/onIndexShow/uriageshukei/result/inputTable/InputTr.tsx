@@ -4,6 +4,7 @@ import {useMonths} from '../../hooks/useMonths';
 import InputEditable from './InputEditable';
 import {useTypedWatch, type ParsedYearRecData} from 'onIndexShow/uriageshukei/hooks';
 import {type FormType} from 'onIndexShow/uriageshukei/formSettings';
+import {InputTd} from './InputTd';
 
 export default function InputTr({
 	year,
@@ -52,15 +53,13 @@ export default function InputTr({
 				}
 
 				return (
-					<Td 
+					<InputTd 
+						fiscalYear={year}
+						month={month}
 						key={month} 
-						fontSize={'12px'} 
-						isNumeric
-						bgColor={value === '' ? 'gray.100' : ''}
-
-					>
-						{value}
-					</Td>
+						value={value} 
+					/>
+						
 				);
 			})}
 

@@ -1,7 +1,7 @@
 import {Td, Tr} from '@chakra-ui/react';
 import {useMonths, type TTMDataResult} from 'onIndexShow/uriageshukei/hooks';
 
-export const Ytd = ({
+export const YtdTr = ({
 	fiscalYear,
 	data,
 }: {
@@ -15,7 +15,7 @@ export const Ytd = ({
 		<Tr>
 			<Td>{fiscalYear}年</Td>
 			{months.map((month) => {
-				let value: string | number | undefined = data?.[month] ?? '';
+				let value = data?.[month] ?? '';
 				if (typeof value === 'number') {
 					value = value.toLocaleString();
 				}

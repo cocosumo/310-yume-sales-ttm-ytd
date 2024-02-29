@@ -1,7 +1,7 @@
 import {useTypedWatch, useYTDData} from 'onIndexShow/uriageshukei/hooks';
-import {TtmTr} from '../ttmTable/TtmTr';
 import {type FormType} from 'onIndexShow/uriageshukei/formSettings';
 import CustomTBody from '../common/CustomTBody';
+import {YtdTr} from './YtdTr';
 
 export const YtdTBody = ({
 	store,
@@ -20,7 +20,7 @@ export const YtdTBody = ({
 		<CustomTBody>
 			{
 				showYears.map((yr) => (
-					<TtmTr 
+					<YtdTr 
 						key={yr} 
 						fiscalYear={yr} 
 						data={data?.[yr]}
