@@ -13,7 +13,7 @@ const EditButtonIcon = ({
 }) => {
 	const isFetching = useIsFetching();
 
-	if (isFetching) return <Spinner />;
+	if (isFetching) return <Spinner size={'xs'} />;
 
 	if (isEditting) return <FaCheck />;
 	return <FaRegEdit />;
