@@ -34,7 +34,7 @@
     "@types/qs": "^6.9.12",
     "@types/react": "^18.2.66",
     "dotenv-cli": "^7.4.1",
-    "esbuild": "^0.20.1",
+    "esbuild": "^0.20.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-xo": "^0.44.0",
