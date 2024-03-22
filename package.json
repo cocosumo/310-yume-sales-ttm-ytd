@@ -72,7 +72,7 @@
     "react-to-print": "^2.15.1",
     "recharts": "^2.12.3",
     "ts-node": "^10.9.2",
-    "usehooks-ts": "^2.16.0",
+    "usehooks-ts": "^3.0.2",
     "zod": "^3.22.4"
   }
 }
