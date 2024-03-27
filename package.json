@@ -26,7 +26,7 @@
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",
     "@jest/globals": "^29.7.0",
-    "@kintone/dts-gen": "^8.0.8",
+    "@kintone/dts-gen": "^8.0.9",
     "@tanstack/eslint-plugin-query": "^5.28.6",
     "@types/jest": "^29.5.12",
     "@types/lodash.debounce": "^4.0.9",
