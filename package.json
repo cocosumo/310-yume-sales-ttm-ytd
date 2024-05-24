@@ -32,7 +32,7 @@
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20.12.12",
     "@types/qs": "^6.9.15",
-    "@types/react": "^18.3.2",
+    "@types/react": "^18.3.3",
     "dotenv-cli": "^7.4.2",
     "esbuild": "^0.21.3",
     "eslint": "^8.57.0",
