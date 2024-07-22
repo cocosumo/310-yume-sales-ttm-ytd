@@ -57,7 +57,7 @@
     "@kintone/customize-uploader": "^8.0.13",
     "@kintone/rest-api-client": "^5.5.2",
     "@tanstack/react-query": "^5.51.11",
-    "@tanstack/react-query-devtools": "^5.51.9",
+    "@tanstack/react-query-devtools": "^5.51.11",
     "@types/react-dom": "^18.3.0",
     "@uidotdev/usehooks": "^2.4.1",
     "date-fns": "^3.6.0",
