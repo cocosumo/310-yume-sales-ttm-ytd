@@ -27,7 +27,7 @@
     "@hookform/devtools": "^4.3.1",
     "@jest/globals": "^29.7.0",
     "@kintone/dts-gen": "^8.0.12",
-    "@tanstack/eslint-plugin-query": "^5.51.12",
+    "@tanstack/eslint-plugin-query": "^5.51.13",
     "@types/jest": "^29.5.12",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20.14.12",
