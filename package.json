@@ -61,7 +61,7 @@
     "@types/react-dom": "^18.3.0",
     "@uidotdev/usehooks": "^2.4.1",
     "date-fns": "^3.6.0",
-    "framer-motion": "^11.3.30",
+    "framer-motion": "^11.3.31",
     "jotai": "^2.9.3",
     "lodash.debounce": "^4.0.8",
     "qs": "^6.13.0",
